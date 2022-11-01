@@ -4,14 +4,13 @@ import numpy as np
 
 # Function that take an image in parameter and make the masks of colours between Orange to Yellow
 # and between Brown to black. Also write a final mask in real colour
-def colour_mask(img : np.ndarray):
-    # CONVERT TO HSV COLORS
+def colour_mask(img : np.ndarray, filename : str):
     hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
     color1 = (10, 200, 20)  # orange
     color2 = (28, 255, 255)  # yellow
 
-    color3 = (0, 1, 0)  # black
+    color3 = (0, 50 , 0)  # black
     color4 = (15, 200, 140)  # brown
 
     # Define threshold color range to filter
@@ -46,7 +45,7 @@ def colour_mask(img : np.ndarray):
     """
     cv2.imshow("Hornet masked", res)
 
-    cv2.waitKey()
+    #cv2.waitKey()
 
     # write the result of the colour mask res of the hornet in a file called Hornet_mask.jpg
-    cv2.imwrite('Hornet_mask.jpg', res)
+    cv2.imwrite('Footage/cutout_versions/Mask/' + filename, res)

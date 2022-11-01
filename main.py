@@ -1,9 +1,12 @@
-from Cut_Out.cutout import *
+
 import sys
+import time
 
 from Cut_Out.cutout import cutout
 
 def main():
+    
+    time_start = time.process_time()
     
     ############ Get the image to analyse ############
     
@@ -18,5 +21,9 @@ def main():
     
     cutout(picturefile)
     
+    
+    time_end = time.process_time()
+    compute_time = time_end - time_start
+    print("Time to compute: ", compute_time, "s")
     
 main()

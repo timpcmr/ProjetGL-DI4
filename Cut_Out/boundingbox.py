@@ -6,7 +6,7 @@ import numpy as np
 
 # Function that take a mask image in first parameter and calculate contours in order to draw a bounding box to run the
 # grabcut algorithm, the second parameter correspond to the original image to grabcut
-def boundingbox(mask, filename):
+def boundingbox(mask, filename : str, imagename : str):
     image = cv2.imread(mask)
 
     # Convert the image to grayscale
@@ -58,7 +58,7 @@ def boundingbox(mask, filename):
     # Show all contours detected and the rectangle drawn that contains all the contours
     # It's possible to comment these 3 lines if you don't want to show these results
     cv2.imshow('All contours with bounding box', with_contours)
-    cv2.waitKey(0)
+    #cv2.waitKey(0)
     cv2.destroyAllWindows()
 
     new_image = cv2.imread(filename)
@@ -81,5 +81,6 @@ def boundingbox(mask, filename):
     print('pixel percentage of the size of the Asians hornet:', np.round(ratio * 100, 2))
 
     cv2.imshow('Grabcut output', output)
-    cv2.waitKey(0)
+    cv2.imwrite('Footage/cutout_versions/GrabCut/' + imagename, output)
+    #cv2.waitKey(0)
     cv2.destroyAllWindows()
