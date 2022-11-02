@@ -11,4 +11,7 @@ def cutout(filename : str):
     imagename = filename.removeprefix("Footage/")
 
     colour_mask(img, imagename)
-    boundingbox('Footage/cutout_versions/Mask/' + imagename, filename, imagename)
+    height, width = boundingbox('Footage/cutout_versions/Mask/' + imagename, filename, imagename)
+    
+    length = max(height, width)
+    print('size : ' + str(length))

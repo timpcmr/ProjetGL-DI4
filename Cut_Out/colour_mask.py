@@ -10,7 +10,7 @@ def colour_mask(img : np.ndarray, filename : str):
     color1 = (10, 200, 20)  # orange
     color2 = (28, 255, 255)  # yellow
 
-    color3 = (0, 50 , 0)  # black
+    color3 = (0, 70 , 0)  # black
     color4 = (15, 200, 140)  # brown
 
     # Define threshold color range to filter
@@ -23,13 +23,17 @@ def colour_mask(img : np.ndarray, filename : str):
 
     # Addition of the two masks
     res_hsv = cv2.addWeighted(resBrownToBlack, 1, resOrangeToYellow, 1, 0)
-    res = cv2.cvtColor(res_hsv, cv2.COLOR_HSV2BGR)
+    #res = cv2.cvtColor(res_hsv, cv2.COLOR_HSV2BGR)
+    res = res_hsv
 
 
     # Computing ratio of the color range Orange/Yellow and rounding to two decimal places
     ratioOfOrangeToYellow = cv2.countNonZero(mask1) / (hsv_img.size / 3)
     print('pixel percentage of colour Orange to Yellow:', np.round(ratioOfOrangeToYellow * 100, 2))
-
+    cv2.imshow("orange to yellow mask hornet", resOrangeToYellow)
+    cv2.imshow("brown to black mask hornet", resBrownToBlack)
+    cv2.imshow("Hornet masked", res)
+    cv2.waitKey()
     """
     
     # Show the mask of colour and an image of the mask of the hornet in real colour

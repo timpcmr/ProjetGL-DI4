@@ -71,7 +71,7 @@ def boundingbox(mask, filename : str, imagename : str):
     # Create the rect tuple for openCV Grabcut
     rect = (min_x, min_y, abs(min_x - max_x), abs(min_y - max_y))
 
-    mask, bgdModel, fgdModel = cv2.grabCut(new_image, mask, rect, bgdModel, fgdModel, 5, cv2.GC_INIT_WITH_RECT)
+    mask, bgdModel, fgdModel = cv2.grabCut(new_image, mask, rect, bgdModel, fgdModel, 7, cv2.GC_INIT_WITH_RECT)
 
     mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
     output = new_image * mask2[:, :, np.newaxis]
@@ -84,3 +84,8 @@ def boundingbox(mask, filename : str, imagename : str):
     cv2.imwrite('Footage/cutout_versions/GrabCut/' + imagename, output)
     #cv2.waitKey(0)
     cv2.destroyAllWindows()
+    
+    height = max_y - min_y
+    width = max_x - min_x
+
+    return height, width

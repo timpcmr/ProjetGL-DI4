@@ -3,6 +3,7 @@ import sys
 import time
 
 from Cut_Out.cutout import cutout
+from Caracteristics.hornet_class import *
 
 def main():
     
