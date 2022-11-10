@@ -3,7 +3,8 @@ import sys
 import time
 
 from Cut_Out.cutout import cutout
-from Caracteristics.hornet_class import *
+from Caracteristics.hornet_class import hornet_class
+from XMLgenerator.xmlgenerator import xmlgenerator
 
 def main():
     
@@ -17,10 +18,20 @@ def main():
     
     else :
         picturefile = sys.argv[1]
-    
+    """
     ############ Getting a cut out version of the image ############
     
     cutout(picturefile)
+    
+    ############ Getting the caracteristics of the hornet ############
+    
+    hclass = hornet_class("Footage/cutout_versions/GrabCut/" + picturefile.removeprefix("Footage/"))
+    """
+    ############ Generating the XML file ############
+    
+    test = {"cast" : "Fondatrice", "hornetlength" : "10mm", "abdomenshape" : "Rond"}
+    
+    xmlgenerator(test, picturefile)
     
     
     time_end = time.process_time()
