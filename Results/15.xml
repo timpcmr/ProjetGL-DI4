@@ -1,1 +1,16 @@
-b'<data><picture><item><cast /><hornetlength /><abdomenshape /><wingsspacing /></item><item><date /><time /><trapreference /></item></picture></data>' 
+<?xml version="1.0" ?>
+  <data>
+    <picture name="15.jpg">
+      <caracteristics>
+        <cast>Fondatrice</cast>
+        <hornetlength unit="mm">10</hornetlength>
+        <abdomenshape>Rond</abdomenshape>
+        <wingsspacing unit="mm">UNDEFINED</wingsspacing>
+      </caracteristics>
+      <metadata>
+        <date>2022:11:02</date>
+        <time>14:21:45</time>
+        <trapreference>UNDEFINED</trapreference>
+      </metadata>
+    </picture>
+  </data>

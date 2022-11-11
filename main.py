@@ -29,7 +29,7 @@ def main():
     """
     ############ Generating the XML file ############
     
-    test = {"cast" : "Fondatrice", "hornetlength" : "10mm", "abdomenshape" : "Rond"}
+    test = {"cast" : "Fondatrice", "hornetlength" : "10", "abdomenshape" : "Rond"}
     
     xmlgenerator(test, picturefile)
     

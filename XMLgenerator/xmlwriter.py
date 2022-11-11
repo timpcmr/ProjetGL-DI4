@@ -1,4 +1,5 @@
-import xml.etree.ElementTree as ET
+from xml.dom import minidom
+import os 
 from pathlib import Path
 
 def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str, trap_reference : str):
@@ -14,7 +15,7 @@ def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str, tr
     if 'DateTime' not in picture_metadata:
         picture_metadata['DateTime'] = 'UNDEFINED'
     
-    # Pre-processing of DateTimeOriginal
+    # Pre-processing of DateTime
     
     datetime = picture_metadata['DateTime']
     xmldate = datetime[:10]
@@ -26,46 +27,58 @@ def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str, tr
     
     # XML Formatting, filling and saving
     
+    root = minidom.Document()
+    
     # Main label
-    data = ET.Element('data')
+    data = root.createElement('data')
+    root.appendChild(data)
     
     # Label for each picture
-    picture = ET.SubElement(data, 'picture')
+    picture = root.createElement('picture')
+    picture.setAttribute('name', filename.removeprefix("Footage/"))
+    data.appendChild(picture)
     
     # Labels for the caracteristics
-    caracteristics = ET.SubElement(picture, 'item')
+    caracteristics_label = root.createElement('caracteristics')
+    picture.appendChild(caracteristics_label)
     
-    cast = ET.SubElement(caracteristics, 'cast') # If determined
-    hornetlength = ET.SubElement(caracteristics, 'hornetlength')
-    abdomenshape = ET.SubElement(caracteristics, 'abdomenshape')
-    wingsspacing = ET.SubElement(caracteristics, 'wingsspacing') # If determined
+    cast = root.createElement('cast') # If determined
+    cast.appendChild(root.createTextNode(caracteristics['cast']))
+    caracteristics_label.appendChild(cast)
+    
+    hornetlength = root.createElement('hornetlength')
+    hornetlength.setAttribute('unit', 'mm')
+    hornetlength.appendChild(root.createTextNode(caracteristics['hornetlength']))
+    caracteristics_label.appendChild(hornetlength)
+    
+    abdomenshape = root.createElement('abdomenshape')
+    abdomenshape.appendChild(root.createTextNode(caracteristics['abdomenshape']))
+    caracteristics_label.appendChild(abdomenshape)
+    
+    wingsspacing = root.createElement('wingsspacing') # If determined
+    wingsspacing.setAttribute('unit', 'mm')
+    wingsspacing.appendChild(root.createTextNode(caracteristics['wingsspacing']))
+    caracteristics_label.appendChild(wingsspacing)
     
     # Labels for the metadata contained in the picture
-    metadata = ET.SubElement(picture, 'item')
+    metadata = root.createElement('metadata')
+    picture.appendChild(metadata)
     
-    date = ET.SubElement(metadata, 'date')
-    time = ET.SubElement(metadata, 'time')
-    trapreference = ET.SubElement(metadata, 'trapreference') # If given
-    # Value for the picture name
+    date = root.createElement('date')
+    date.appendChild(root.createTextNode(xmldate))
+    metadata.appendChild(date)
     
-    picture.text = filename
+    time = root.createElement('time')
+    time.appendChild(root.createTextNode(xmltime))
+    metadata.appendChild(time)
     
-    # Values for the caracteristics
-    cast.text = caracteristics['cast']
-    hornetlength.text = caracteristics['hornetlength']
-    abdomenshape.text = caracteristics['abdomenshape']
-    wingsspacing.text = caracteristics['wingsspacing']
+    trapreference = root.createElement('trapreference') # If given
+    trapreference.appendChild(root.createTextNode(trap_reference))
+    metadata.appendChild(trapreference)
     
-    # Values for the metadata contained in the picture
-    date.text = xmldate
-    time.text = xmltime
-    trapreference.text = trap_reference
     
     # create a new XML file with the results
-    mydata = ET.tostring(data)
-    print(mydata)
-    myfile = open("Results/" + outputname, "w+")
-    myfile.write(str(mydata))
-    myfile.close()
+    root.writexml( open('Results/' + outputname, 'w'), indent="  ", addindent="  ", newl='\n')
+    root.unlink()
     
     return 0
