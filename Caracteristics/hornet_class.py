@@ -1,6 +1,10 @@
 from .abdomen_shape import *
 from .hornet_length import *
+import cv2
 
-def hornet_class():
+def hornet_class(RGBApicture):
+    
+    hornet_length_value = hornet_length(RGBApicture)
+    
     
     return dict

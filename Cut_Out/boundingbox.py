@@ -3,6 +3,8 @@ import cv2  # Computer vision library
 # Read the color image
 import numpy as np
 
+from pathlib import Path
+
 
 # Function that take a mask image in first parameter and calculate contours in order to draw a bounding box to run the
 # grabcut algorithm, the second parameter correspond to the original image to grabcut
@@ -62,6 +64,7 @@ def boundingbox(mask, filename : str, imagename : str):
     cv2.destroyAllWindows()
 
     new_image = cv2.imread(filename)
+    
 
     # Create a 0's mask
     mask = np.zeros(new_image.shape[:2], np.uint8)
@@ -72,20 +75,20 @@ def boundingbox(mask, filename : str, imagename : str):
     rect = (min_x, min_y, abs(min_x - max_x), abs(min_y - max_y))
 
     mask, bgdModel, fgdModel = cv2.grabCut(new_image, mask, rect, bgdModel, fgdModel, 7, cv2.GC_INIT_WITH_RECT)
-
+    
     mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
-    output = new_image * mask2[:, :, np.newaxis]
+    new_imageAlpha = cv2.cvtColor(new_image, cv2.COLOR_BGR2BGRA)
+    output = new_imageAlpha * mask2[:, :, np.newaxis]
 
     # Computing ratio of the color range Orange/Yellow
-    ratio = cv2.countNonZero(mask2) / (new_image.size / 3)
+    ratio = cv2.countNonZero(mask2) / (new_imageAlpha.size / 3)
     print('pixel percentage of the size of the Asians hornet:', np.round(ratio * 100, 2))
 
-    cv2.imshow('Grabcut output', output)
-    cv2.imwrite('Footage/cutout_versions/GrabCut/' + imagename, output)
+    outputname = Path(imagename).stem + '_cutout.png'
+    #cv2.imshow('Grabcut output', output)
+    cv2.imwrite('Footage/cutout_versions/GrabCut/' + outputname, output)
     #cv2.waitKey(0)
     cv2.destroyAllWindows()
     
-    height = max_y - min_y
-    width = max_x - min_x
 
-    return height, width
+    return output

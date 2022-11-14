@@ -30,11 +30,13 @@ def colour_mask(img : np.ndarray, filename : str):
     # Computing ratio of the color range Orange/Yellow and rounding to two decimal places
     ratioOfOrangeToYellow = cv2.countNonZero(mask1) / (hsv_img.size / 3)
     print('pixel percentage of colour Orange to Yellow:', np.round(ratioOfOrangeToYellow * 100, 2))
+    
+    """
     cv2.imshow("orange to yellow mask hornet", resOrangeToYellow)
     cv2.imshow("brown to black mask hornet", resBrownToBlack)
     cv2.imshow("Hornet masked", res)
     cv2.waitKey()
-    """
+    
     
     # Show the mask of colour and an image of the mask of the hornet in real colour
     # It's possible to comment these 4 lines if you don't want to show these results
@@ -47,7 +49,7 @@ def colour_mask(img : np.ndarray, filename : str):
                 y.data[1] = 255
                 y.data[2] = 255
     """
-    cv2.imshow("Hornet masked", res)
+    #cv2.imshow("Hornet masked", res)
 
     #cv2.waitKey()
 
