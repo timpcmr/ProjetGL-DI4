@@ -23,35 +23,12 @@ def colour_mask(img : np.ndarray, filename : str):
 
     # Addition of the two masks
     res_hsv = cv2.addWeighted(resBrownToBlack, 1, resOrangeToYellow, 1, 0)
-    #res = cv2.cvtColor(res_hsv, cv2.COLOR_HSV2BGR)
     res = res_hsv
 
 
     # Computing ratio of the color range Orange/Yellow and rounding to two decimal places
     ratioOfOrangeToYellow = cv2.countNonZero(mask1) / (hsv_img.size / 3)
     print('pixel percentage of colour Orange to Yellow:', np.round(ratioOfOrangeToYellow * 100, 2))
-    
-    """
-    cv2.imshow("orange to yellow mask hornet", resOrangeToYellow)
-    cv2.imshow("brown to black mask hornet", resBrownToBlack)
-    cv2.imshow("Hornet masked", res)
-    cv2.waitKey()
-    
-    
-    # Show the mask of colour and an image of the mask of the hornet in real colour
-    # It's possible to comment these 4 lines if you don't want to show these results
-    #cv2.imshow("orange to yellow mask hornet", resOrangeToYellow)
-    #cv2.imshow("brown to black mask hornet", resBrownToBlack)
-    for x in res:
-        for y in x:
-            if y.data[0]==0 and y.data[1]==0 and y.data[2]==0:
-                y.data[0] = 255
-                y.data[1] = 255
-                y.data[2] = 255
-    """
-    #cv2.imshow("Hornet masked", res)
-
-    #cv2.waitKey()
 
     # write the result of the colour mask res of the hornet in a file called Hornet_mask.jpg
     cv2.imwrite('Footage/cutout_versions/Mask/' + filename, res)
