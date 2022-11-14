@@ -63,7 +63,7 @@ def hornet_length(picture):
     
     upper_line, lower_line, left_line = bounding_lines(array_image)
 
-    """"
+    
     # Drawing the lines on the image
     
     # Lower line
@@ -75,9 +75,8 @@ def hornet_length(picture):
     # Left line
     cv2.line(picture, (left_line, 0), (left_line, number_of_lines), (0, 0, 255), 2)
     
-    cv2.imshow("Hornet length", picture)
-    cv2.waitKey(0)
-    """
+    
+    
     
     extracted_array = array_image[upper_line:lower_line, left_line:number_of_columns]
     
@@ -88,10 +87,28 @@ def hornet_length(picture):
     pixel_count = np.max(pixel_count_list)
     index_max = pixel_count_list.index(pixel_count)
     
+    # Right line
+    
+    positionning = int(left_line + pixel_count)
+    cv2.line(picture, (positionning, 0), (positionning, number_of_lines), (0, 0, 255), 2)
+    
+    # Longest line
+    cv2.line(picture, (left_line, index_max + upper_line), (positionning, index_max + upper_line), (0, 255, 0), 2)
+    
+    # Sting
+    cv2.circle(picture, (positionning, index_max + upper_line), 10, (255, 75, 0), -1)
+    
+    cv2.imshow("Hornet length", picture)
+    
+    cv2.imwrite('Footage/LengthPlots/15.jpg', picture)
+    cv2.waitKey(0)
+    
     print("Pixel count:", pixel_count)
     
     length_value = np.divide(pixel_count, scale)
     
     print("Length value:", length_value, "mm")
     
-    return length_value, index_max
+    index_max_global = index_max + upper_line
+    
+    return length_value, index_max_global
