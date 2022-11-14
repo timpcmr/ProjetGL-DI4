@@ -4,7 +4,7 @@ import cv2
 
 def hornet_class(RGBApicture):
     
-    hornet_length_value = hornet_length(RGBApicture)
+    hornet_length_value, index_line_sting = hornet_length(RGBApicture)
     
     
     return dict

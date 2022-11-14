@@ -52,7 +52,7 @@ def bounding_lines(array_image : np.ndarray):
     return upper_line, lower_line, left_line
     
 
-def hornet_length(picture) -> int:
+def hornet_length(picture):
     
     scale = 100 # Number of pixels per millimeter
     
@@ -85,10 +85,13 @@ def hornet_length(picture) -> int:
     for line in extracted_array:
         pixel_count_list.append(non_zero_pixels(line))
     
-    pixel_count = np.ceil(np.max(pixel_count_list))
+    pixel_count = np.max(pixel_count_list)
+    index_max = pixel_count_list.index(pixel_count)
     
     print("Pixel count:", pixel_count)
     
     length_value = np.divide(pixel_count, scale)
     
-    return length_value
+    print("Length value:", length_value, "mm")
+    
+    return length_value, index_max
