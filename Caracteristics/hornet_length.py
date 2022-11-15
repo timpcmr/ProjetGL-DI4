@@ -32,8 +32,7 @@ def result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_cou
     
 
 def non_zero_pixels(line : np.ndarray) -> int:
-    
-    return np.divide(np.count_nonzero(line),4)
+    return np.divide(np.count_nonzero(line), line.shape[1])
 
 def bounding_lines(array_image : np.ndarray):
     
