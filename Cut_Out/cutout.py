@@ -11,9 +11,13 @@ def cutout(filename : str):
     
     mask = cv2.threshold(img_GREY, 90, 255, cv2.THRESH_BINARY)
     
+    """
     for i in range(img.shape[0]):
         for j in range(img.shape[1]):
             if mask[1][i][j] == 255:
                 img_RGBA[i][j] = [0, 0, 0, 0]
+    
+    """
 
-    return img_RGBA
+    #return img_RGBA
+    return mask[1]
