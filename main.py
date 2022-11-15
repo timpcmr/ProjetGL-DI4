@@ -29,7 +29,7 @@ def main():
     ############ Getting a cut out version of the image ############
     
     #RGBA_cutout_picture = cutout(picturefile)
-    RGBA_cutout_picture = cv2.imread("Footage/cutout_versions/GrabCut/15_cutout.png", -1)
+    RGBA_cutout_picture = cv2.imread("Footage/cutout_versions/GrabCut/17_cutout.png", -1)
     
     ############ Getting the caracteristics of the hornet ############
     

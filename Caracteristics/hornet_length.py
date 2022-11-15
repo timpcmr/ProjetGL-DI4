@@ -27,7 +27,7 @@ def result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_cou
     
     cv2.imshow("Hornet length", picture)
     
-    cv2.imwrite('Footage/LengthPlots/15.jpg', picture)
+    cv2.imwrite('Footage/LengthPlots/17.jpg', picture)
     cv2.waitKey(0)
     
     
@@ -92,10 +92,6 @@ def hornet_length(picture):
     
     
     upper_line, lower_line, left_line = bounding_lines(array_image)
-
-    
-   
-    
     
     extracted_array = array_image[upper_line:lower_line, left_line:number_of_columns]
     
@@ -106,7 +102,7 @@ def hornet_length(picture):
     pixel_count = np.max(pixel_count_list)
     index_max = pixel_count_list.index(pixel_count)
     
-    #result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns)
+    result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns)
     
     print("Pixel count:", pixel_count)
     
