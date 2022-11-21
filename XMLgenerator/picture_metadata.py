@@ -1,7 +1,7 @@
 from PIL import Image
 from PIL.ExifTags import TAGS
 
-def picture_metadata(filename):
+def picture_metadata(filename : str) -> dict:
     
     # read the image data using PIL
     image = Image.open(filename)

@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 # Returns the length of the hornet in terms of pixel count
 
-def result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns, picturefile : str):
+def result_plot(picture : np.ndarray, lower_line : int, upper_line : int, left_line : int, index_max : int, pixel_count : int, number_of_lines : int, number_of_columns : int, picturefile : str) -> tuple:
      # Drawing the lines on the image
     
     picture = cv2.cvtColor(picture, cv2.COLOR_GRAY2BGR)
@@ -34,6 +34,7 @@ def result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_cou
     print(outputfile)
     cv2.imwrite(outputfile, picture)
     cv2.waitKey(0)
+    return (positionning, index_max + upper_line)
 
 
 def zero_pixels(line : np.ndarray) -> int:
@@ -42,7 +43,7 @@ def zero_pixels(line : np.ndarray) -> int:
 
 
 
-def bounding_lines(array_image : np.ndarray):
+def bounding_lines(array_image : np.ndarray) -> tuple:
     
     number_of_lines = array_image.shape[0]
     number_of_columns = array_image.shape[1]
@@ -87,7 +88,7 @@ def bounding_lines(array_image : np.ndarray):
     
     return upper_line, lower_line, left_line
 
-def hornet_length(picture, picturefile):
+def hornet_length(picture : np.ndarray, picturefile : str) -> tuple:
     
     scale = 100 # Number of pixels per millimeter
     
@@ -109,7 +110,7 @@ def hornet_length(picture, picturefile):
     pixel_count = np.max(pixel_count_list)
     index_max = pixel_count_list.index(pixel_count)
     
-    #result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns, picturefile)
+    sting_coordinates = result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns, picturefile)
     
     print("Pixel count:", pixel_count)
     
@@ -117,6 +118,4 @@ def hornet_length(picture, picturefile):
     
     print("Length value:", length_value, "mm")
     
-    index_max_global = index_max + upper_line
-    
-    return length_value, index_max_global
+    return length_value, sting_coordinates

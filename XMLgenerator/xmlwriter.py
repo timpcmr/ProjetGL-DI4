@@ -2,7 +2,7 @@ from xml.dom import minidom
 import os 
 from pathlib import Path
 
-def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str, trap_reference : str):
+def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str, trap_reference : str) -> int:
     
     # Checks of values
     
@@ -10,8 +10,10 @@ def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str, tr
         caracteristics['cast'] = 'UNDEFINED'
     if 'wingsspacing' not in caracteristics:
         caracteristics['wingsspacing'] = 'UNDEFINED'
-    if trap_reference == '':
-        trap_reference = 'UNDEFINED'
+    if 'hornetlength' not in caracteristics:
+        caracteristics['hornetlength'] = 'UNDEFINED'
+    if 'abdomenshape' not in caracteristics:
+        caracteristics['abdomenshape'] = 'UNDEFINED'
     if 'DateTime' not in picture_metadata:
         picture_metadata['DateTime'] = 'UNDEFINED'
     
