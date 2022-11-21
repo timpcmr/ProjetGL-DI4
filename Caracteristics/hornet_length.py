@@ -104,12 +104,11 @@ def hornet_length(picture : np.ndarray, picturefile : str) -> tuple:
     pixel_count_list = list()
     
     for line in extracted_array:
-        #pixel_count_list.append(non_zero_pixels(line))
         pixel_count_list.append(zero_pixels(line))
-    
+
     pixel_count = np.max(pixel_count_list)
-    index_max = pixel_count_list.index(pixel_count)
     
+    index_max = pixel_count_list.index(pixel_count)
     sting_coordinates = result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns, picturefile)
     
     print("Pixel count:", pixel_count)
