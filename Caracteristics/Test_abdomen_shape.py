@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 
 def Test_abdomen_shape():
+    print("Début")
     # Lecture image
     image = cv2.imread('test.jpg')
     cv2.waitKey(0)
@@ -26,3 +27,5 @@ def Test_abdomen_shape():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     return
+
+Test_abdomen_shape()
