@@ -17,6 +17,7 @@ def cutout(filename : str) -> np.ndarray:
     # Loading images
     img = cv2.imread(filename)
     
+    #Hanling the case where the image cannot be read
     if img is None:
         raise FileNotFoundError
     

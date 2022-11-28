@@ -45,6 +45,8 @@ def result_plot(picture : np.ndarray, lower_line : int, upper_line : int, left_l
     cv2.circle(picture, (positionning, index_max + upper_line), 10, (255, 75, 0), -1)
     
     cv2.imshow("Hornet length", picture)
+    
+    # Exporting the plot
     outputfile = picturefile[:-4] + "_length.jpg"
     outputfile = outputfile.removeprefix('Footage/')
     outputfile = "Footage/LengthPlots/" + outputfile
@@ -81,6 +83,7 @@ def bounding_lines(array_image : np.ndarray) -> tuple:
         tuple: Indices des lignes/colonnes délimitant de la zone d'analyse du frelon
     """
     
+    # Getting the number of lines and columns of the image
     number_of_lines = array_image.shape[0]
     number_of_columns = array_image.shape[1]
     
@@ -136,31 +139,38 @@ def hornet_length(picture : np.ndarray, picturefile : str) -> tuple:
         tuple : Longueur du frelon en pixels, coordonnées de l'extrémité de l'abdomen
     """
     
-    scale = 100 # Number of pixels per millimeter
+    # Number of pixels per millimeter
+    scale = 100 
     
+    # Generating a copy of the picture to draw on
     array_image = np.asarray(picture)
+    
+    # Getting its dimensions
     number_of_lines = array_image.shape[0]
     number_of_columns = array_image.shape[1]
     
-    
+    # Getting the bounds of the area to analyze
     upper_line, lower_line, left_line = bounding_lines(array_image)
     
+    # Extracting the area of interest to save computing time
     extracted_array = array_image[upper_line:lower_line, left_line:number_of_columns]
     
+    # Making a list of the number of black pixels per line
     pixel_count_list = list()
-    
     for line in extracted_array:
         pixel_count_list.append(zero_pixels(line))
 
+    # Gettint its maximum value and its index in the original array
     pixel_count = np.max(pixel_count_list)
-    
     index_max = pixel_count_list.index(pixel_count)
     sting_coordinates = int(left_line + pixel_count), index_max + upper_line
     
+    # Optionnal plot : See the results of the analysis in a graphical manner
     result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns, picturefile)
     
     print("Pixel count:", pixel_count)
     
+    # Conversion from pixels to millimeters
     length_value = np.divide(pixel_count, scale)
     
     print("Length value:", length_value, "mm")
