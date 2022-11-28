@@ -2,7 +2,14 @@ from PIL import Image
 from PIL.ExifTags import TAGS
 
 def picture_metadata(filename : str) -> dict:
-    
+    """Lis les métadonnées d'une image
+
+    Args:
+        filename (str): Chemin d'accès à l'image
+
+    Returns:
+        dict: Dictioanire contenant les métadonnées de l'image
+    """
     # read the image data using PIL
     image = Image.open(filename)
     

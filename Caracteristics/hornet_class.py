@@ -4,6 +4,16 @@ import cv2
 
 def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
     
+    """Fonction pilotant la classification du frelon
+
+    Args:
+        hornet_binary_mask (np.ndarray): Matrice de l'image binaire du frelon
+        picturefile (str): Chemin d'accès à l'image
+
+    Returns:
+        dict: Caste du frelon
+    """
+    
     # initialising the output variable
     caracteristics = dict()
     

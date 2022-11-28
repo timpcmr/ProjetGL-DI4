@@ -2,6 +2,18 @@ import numpy as np
 import cv2
 
 def cutout(filename : str) -> np.ndarray:
+    """Fonction effectuant le découpage de l'image
+
+    Args:
+        filename (str): Chemin d'accès à l'image
+
+    Raises:
+        FileNotFoundError: Si l'image n'a pas pu être lue
+
+    Returns:
+        np.ndarray: Matrice du découpage de l'image
+    """
+    
     # Loading images
     img = cv2.imread(filename)
     

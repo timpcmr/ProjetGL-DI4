@@ -8,7 +8,11 @@ from Caracteristics.hornet_class import hornet_class
 from XMLgenerator.xmlgenerator import xmlgenerator
 
 def main() -> int:
-    
+    """Fonction principale du programme 
+
+    Returns:
+        int: Code de retour du programme
+    """
     
     time_start = time.process_time()
     

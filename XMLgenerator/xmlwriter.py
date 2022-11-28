@@ -4,6 +4,18 @@ from pathlib import Path
 
 def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str, trap_reference : str) -> int:
     
+    """Fonction d'écriture du fichier XML de sortie
+    
+    Args:
+        caracteristics (dict): Dictionnaire contenant les caractéristiques du frelon
+        picture_metadata (dict): Dictionnaire contenant les métadonnées de l'image
+        filename (str): Chemin d'accès à l'image
+        trap_reference (str): Référence du piège
+
+    Returns:
+        int: Code de retour de la fonction
+    """
+    
     # Checks of values
     
     if 'cast' not in caracteristics:
