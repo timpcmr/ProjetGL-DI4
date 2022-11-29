@@ -4,7 +4,7 @@ Le but de ce projet est d'exécuter un traitement procédural sur des photos de 
 
 ## Installation
 
-Les packages requis pour l'exécution sont : </br>
+Les packages requis pour l'exécution sont :
 
 - opencv-python
 - minidom
