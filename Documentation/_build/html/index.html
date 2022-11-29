@@ -55,7 +55,7 @@
 <p>Le but de ce projet est d’exécuter un traitement procédural sur des photos de frelons prises à partir d’un piège et de déterminer sa caste (Fondatrice, Ouvrière ou Mâle).</p>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
-<p>Les packages requis pour l’exécution sont : &lt;/br&gt;</p>
+<p>Les packages requis pour l’exécution sont :</p>
 <ul class="simple">
 <li><p>opencv-python</p></li>
 <li><p>minidom</p></li>
@@ -126,8 +126,17 @@ Le sexe est déterminé par aggrégat de resultats de plusieur méthodes de rech
 </section>
 <section id="generation-de-la-documentation">
 <h2>Génération de la documentation<a class="headerlink" href="#generation-de-la-documentation" title="Permalink to this heading">¶</a></h2>
+<p>Nécessite les packages <em>sphinx</em> et <em>m2r2</em> intallables comme suit :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install sphinx <span class="o">&amp;&amp;</span> pip3 install m2r2
+</pre></div>
+</div>
 <p>Pour regénérer la documentation, exécutez :</p>
+<p>Sous environnement Unix:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash docbuild.sh
+</pre></div>
+</div>
+<p>Sous windows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docbuild.bat
 </pre></div>
 </div>
 <p>Les fichiers (dont index.html) se situeront dans Documentation/_build/html</p>

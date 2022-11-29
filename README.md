@@ -80,10 +80,22 @@ Les métadonées sont récupérées à partir de la lecture du fichier .log atta
 
 ## Génération de la documentation
 
-Pour regénérer la documentation, exécutez :
+Nécessite les packages *sphinx* et *m2r2* intallables comme suit :
 
 ```bash
+pip3 install sphinx && pip3 install m2r2
+```
+
+Pour regénérer la documentation, exécutez :
+
+Sous environnement Unix:
+```bash
 bash docbuild.sh
+```
+
+Sous windows:
+```bash
+docbuild.bat
 ```
 
 Les fichiers (dont index.html) se situeront dans Documentation/_build/html
