@@ -43,16 +43,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="Caracteristics.abdomen_shape.abdomen_shape">
 <span class="sig-prename descclassname"><span class="pre">Caracteristics.abdomen_shape.</span></span><span class="sig-name descname"><span class="pre">abdomen_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">picture_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sting_coordinates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Caracteristics.abdomen_shape.abdomen_shape" title="Permalink to this definition">¶</a></dt>
-<dd><p>Détermine la forme de l’abdomen du frelon</p>
+<dd><p>Détermine la forme de l’abdomen du frelon. Par extension, on peut déterminer le sexe de l’insecte.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>picture_array</strong> (<em>np.ndarray</em>) – Matrice de l’image bianire du frelon</p></li>
-<li><p><strong>sting_coordinates</strong> (<em>tuple</em>) – Coordonnées du dard/extremité de l’abdomen</p></li>
+<li><p><strong>picture_array</strong> (<em>np.ndarray</em>) – Matrice du masque binaire du frelon</p></li>
+<li><p><strong>sting_coordinates</strong> (<em>tuple</em>) – Coordonnées de l’extremité de l’abdomen</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Forme de l’abdomen</p>
+<dd class="field-even"><p>Résultat de la forme de l’abdomen</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>

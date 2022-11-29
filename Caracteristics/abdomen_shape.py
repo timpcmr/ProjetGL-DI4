@@ -5,6 +5,17 @@ import math
 
 
 def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
+    
+    """Détermine la forme de l'abdomen du frelon. Par extension, on peut déterminer le sexe de l'insecte.
+    
+    Args:
+        picture_array (np.ndarray): Matrice du masque binaire du frelon
+        sting_coordinates (tuple): Coordonnées de l'extremité de l'abdomen
+        
+    Returns:
+        str: Résultat de la forme de l'abdomen
+    """
+    
     im_sting = picture_array[sting_coordinates[1] - 100:sting_coordinates[1],
                sting_coordinates[0] - 100:sting_coordinates[0]]
 

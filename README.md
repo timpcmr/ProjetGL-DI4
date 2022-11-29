@@ -83,7 +83,7 @@ Les métadonées sont récupérées à partir de la lecture du fichier .log atta
 Pour regénérer la documentation, exécutez :
 
 ```bash
-bash Documentation/build.sh
+bash docbuild.sh
 ```
 
 Les fichiers (dont index.html) se situeront dans Documentation/_build/html
