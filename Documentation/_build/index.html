@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Project documentation &#8212; Projet Analyse d&#39;Images de Frelons 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="project-documentation">
+<h1>Project documentation<a class="headerlink" href="#project-documentation" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+<section id="readme-file">
+<h2>Readme File :<a class="headerlink" href="#readme-file" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<hr class="docutils" />
+<section id="projet-de-genie-logiciel-analyse-d-images-de-frelons">
+<h1>Projet de Génie Logiciel : Analyse d’images de Frelons<a class="headerlink" href="#projet-de-genie-logiciel-analyse-d-images-de-frelons" title="Permalink to this heading">¶</a></h1>
+<p>Le but de ce projet est d’exécuter un traitement procédural sur des photos de frelons prises à partir d’un piège et de déterminer sa caste (Fondatrice, Ouvrière ou Mâle).</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<p>Les packages requis pour l’exécution sont :</p>
+<ul class="simple">
+<li><p>opencv-python</p></li>
+<li><p>minidom</p></li>
+<li><p>numpy</p></li>
+</ul>
+<p>Ils sont installables via la commande</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install <span class="s1">&#39;&lt;Nom du Paquet&gt;&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<p>Pour lancer le programme, on renseignera la commande suivante :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 main.py <span class="s1">&#39;&lt;Chemin image&gt;&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="fonctionnement-du-programme">
+<h2>Fonctionnement du programme<a class="headerlink" href="#fonctionnement-du-programme" title="Permalink to this heading">¶</a></h2>
+<p>En partant de l’image exemple suivante :</p>
+<a class="reference external image-reference" href="Footage/Exemples/15.jpg"><img alt="Photo prise par le piège" src="Footage/Exemples/15.jpg" /></a>
+<section id="detourage">
+<h3>Détourage<a class="headerlink" href="#detourage" title="Permalink to this heading">¶</a></h3>
+<p>Par un système de masques retenant couleurs sombres et le gradiant jaune-orange, on obtient un masque de détourage. Il est ensute traité par par dilatation-érosion pour éliminer le bruit et d’éventuels artefacts visuels indésirables :</p>
+<a class="reference external image-reference" href="./Footage/Exemples/15_cutout_smooth.jpg"><img alt="Masque de détourage" src="Footage/Exemples/15_cutout_smooth.jpg" /></a>
+</section>
+</section>
+<section id="recherche-de-la-caste">
+<h2>Recherche de la caste<a class="headerlink" href="#recherche-de-la-caste" title="Permalink to this heading">¶</a></h2>
+<p>On cherche donc grâce à l’image détourée la caste à laquelle appartient le frelon.</p>
+<section id="critere-de-longeur">
+<h3>Critère de longeur<a class="headerlink" href="#critere-de-longeur" title="Permalink to this heading">¶</a></h3>
+<p>Ici on détermine la longeur de l’insecte pour savoir si c’est une fondatrice ou non. Par comptage de pixels on peut déterminer la taille et l’extrémité de l’abdomen du frelon :</p>
+<a class="reference external image-reference" href="Footage/Exemples/15_length.jpg"><img alt="Resultats de la recherche de la longueur" src="Footage/Exemples/15_length.jpg" /></a>
+</section>
+<section id="critere-de-forme-de-l-abdomen">
+<h3>Critère de forme de l’abdomen<a class="headerlink" href="#critere-de-forme-de-l-abdomen" title="Permalink to this heading">¶</a></h3>
+<p>On peu déterminer le sexe de l’insecte de par la forme de son abdomen. Si il est pointu, c’est une femelle, sinon, c’est un mâle.
+Le sexe est déterminé par aggrégat de resultats de plusieur méthodes de recherches.</p>
+<ul class="simple">
+<li><p>Régréssion Linéaire et Logarithmique des points de contour de l’abdomen</p></li>
+<li><p>Angle de croisement des droites de régression linéaire des deux côtés de l’abdomen</p></li>
+</ul>
+</section>
+</section>
+<section id="restitution-des-resultats">
+<h2>Restitution des résultats<a class="headerlink" href="#restitution-des-resultats" title="Permalink to this heading">¶</a></h2>
+<p>Les résultats obtenus sont renseignés dans un fichier XML comme suit :</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
+  <span class="nt">&lt;data&gt;</span>
+    <span class="nt">&lt;picture</span> <span class="na">name=</span><span class="s">&quot;15.jpg&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;caracteristics&gt;</span>
+        <span class="nt">&lt;cast&gt;</span>Fondatrice<span class="nt">&lt;/cast&gt;</span>
+        <span class="nt">&lt;hornetlength</span> <span class="na">unit=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>24<span class="nt">&lt;/hornetlength&gt;</span>
+        <span class="nt">&lt;abdomenshape&gt;</span>Pointu<span class="nt">&lt;/abdomenshape&gt;</span>
+        <span class="nt">&lt;wingsspacing</span> <span class="na">unit=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>UNDEFINED<span class="nt">&lt;/wingsspacing&gt;</span>
+      <span class="nt">&lt;/caracteristics&gt;</span>
+      <span class="nt">&lt;metadata&gt;</span>
+        <span class="nt">&lt;date&gt;</span>2022:11:02<span class="nt">&lt;/date&gt;</span>
+        <span class="nt">&lt;time&gt;</span>14:21:45<span class="nt">&lt;/time&gt;</span>
+        <span class="nt">&lt;trapreference&gt;</span>00001<span class="nt">&lt;/trapreference&gt;</span>
+      <span class="nt">&lt;/metadata&gt;</span>
+    <span class="nt">&lt;/picture&gt;</span>
+  <span class="nt">&lt;/data&gt;</span>
+</pre></div>
+</div>
+<p>Les métadonées sont récupérées à partir de la lecture du fichier .log attaché à chaque image.</p>
+</section>
+<section id="generation-de-la-documentation">
+<h2>Génération de la documentation<a class="headerlink" href="#generation-de-la-documentation" title="Permalink to this heading">¶</a></h2>
+<p>Pour regénérer la documentation, exécutez :</p>
+<p>Mac :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash docbuild.sh
+</pre></div>
+</div>
+<p>Windows :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docbuild.bat
+</pre></div>
+</div>
+<p>Les fichiers (dont index.html) se situeront dans Documentation/_build/html</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Créé par Lucas SENLECQUE et Timothée AUFFRET, dans le cadre d’un projet d’études à Polytech Tours.
+2022-2023</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Projet Analyse d'Images de Frelons</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, T. AUFFRET & L. SENLECQUE.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
