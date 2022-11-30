@@ -80,7 +80,7 @@ Les métadonées sont récupérées à partir de la lecture du fichier .log atta
 
 ## Génération de la documentation
 
-Nécessite les packages *sphinx* et *m2r2* intallables comme suit :
+Nécessite les packages *sphinx* et *m2r2* installables comme suit :
 
 ```bash
 pip3 install sphinx && pip3 install m2r2
