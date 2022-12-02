@@ -1,7 +1,6 @@
 
 import sys
 import time
-import cv2
 
 from Cut_Out.cutout import cutout
 from Caracteristics.hornet_class import hornet_class
@@ -25,10 +24,6 @@ def main() -> int:
     # Get the image path and the trap reference
     else :
         picturefile = sys.argv[1]
-        try:
-            trap_reference = sys.argv[2]
-        except:
-            trap_reference = "UNDEFINED"
     
     
     ############ Getting a cut out version of the image ############
@@ -47,7 +42,7 @@ def main() -> int:
     
     test = {"cast" : "Fondatrice", "hornetlength" : "10", "abdomenshape" : "Rond"}
     
-    #xmlgenerator(test, picturefile, trap_reference)
+    xmlgenerator(test, picturefile)
     
     
     time_end = time.process_time()

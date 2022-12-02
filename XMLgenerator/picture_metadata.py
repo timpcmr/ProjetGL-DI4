@@ -1,34 +1,29 @@
-from PIL import Image
-from PIL.ExifTags import TAGS
-
+import csv
+from pathlib import Path
 def picture_metadata(filename : str) -> dict:
-    """Lis les métadonnées d'une image
+    """Lis les métadonnées d'une phtographie stockée dans son fichier descriptif .csv et les renvoie sous forme de dictionnaire.
 
     Args:
-        filename (str): Chemin d'accès à l'image
+        filename (str): Chemin d'accès au .csv
 
     Returns:
         dict: Dictioanire contenant les métadonnées de l'image
     """
-    # read the image data using PIL
-    image = Image.open(filename)
     
-    # extract EXIF data
-    exifdata = image.getexif()
+    print(filename)
     
+    # Initialisation of the dictionary
     metadata = dict()
     
-    # iterating over all EXIF data fields
-    for tag_id in exifdata:
-        # get the tag name, instead of human unreadable tag id
-        tag = TAGS.get(tag_id, tag_id)
-        data = exifdata.get(tag_id)
-        # decode bytes 
-        if isinstance(data, bytes):
-            data = data.decode()
+    # Getting the metadata file
+    csv_path = Path(filename).stem + '.csv'
+    csv_path = Path('Footage') / csv_path
+    print(csv_path)
+    with open(csv_path, 'r') as file:
+        csvreader = csv.reader(file, delimiter = ';')
+        rows_list = list(csvreader)
         
-        metadata[tag] = data
-    
-    image.close()
+        for i in range(len(rows_list[0])):
+            metadata[rows_list[0][i]] = rows_list[1][i]
     
     return metadata

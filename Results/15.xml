@@ -8,9 +8,10 @@
         <wingsspacing unit="mm">UNDEFINED</wingsspacing>
       </caracteristics>
       <metadata>
-        <date>2022:11:02</date>
-        <time>14:21:45</time>
-        <trapreference>UNDEFINED</trapreference>
+        <date>08/11/2022</date>
+        <time>10:50</time>
+        <trapreference>001_22</trapreference>
+        <trapcode>001</trapcode>
       </metadata>
     </picture>
   </data>
