@@ -93,7 +93,8 @@ def bounding_lines(array_image : np.ndarray) -> tuple:
     counter = number_of_lines
     pixel_count = 0
     
-    while pixel_count < 400 and counter > 0:
+    horizontal_number = array_image.shape[1] * 0.4
+    while pixel_count < horizontal_number and counter > 0:
         pixel_count = zero_pixels(array_image[counter - 1])
         counter -= 1
     
@@ -104,7 +105,7 @@ def bounding_lines(array_image : np.ndarray) -> tuple:
     counter = 0
     pixel_count = 0
     
-    while pixel_count < 400 and counter < number_of_lines:
+    while pixel_count < horizontal_number and counter < number_of_lines:
         pixel_count = zero_pixels(array_image[counter])
         counter += 1
     
@@ -115,7 +116,8 @@ def bounding_lines(array_image : np.ndarray) -> tuple:
     counter = 0
     pixel_count = 0
     
-    while pixel_count < 100 and counter < number_of_columns:
+    vertical_number = array_image.shape[0] * 0.1
+    while pixel_count < vertical_number and counter < number_of_columns:
         pixel_count = zero_pixels(array_image[:, counter])
         counter += 1
     
