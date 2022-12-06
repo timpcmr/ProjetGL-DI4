@@ -12,10 +12,10 @@ def picture_metadata(filename : str) -> dict:
     
     print(filename)
     
-    # Initialisation of the dictionary
+    # Initialisation du dictionnaire de retour
     metadata = dict()
     
-    # Getting the metadata file
+    # Récupération des métadonnées
     csv_path = Path(filename).stem + '.csv'
     csv_path = Path('Footage') / csv_path
     print(csv_path)

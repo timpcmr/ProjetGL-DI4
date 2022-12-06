@@ -4,30 +4,31 @@ import os
 from xml.dom import minidom
 
 def test_picture_metadata():
+    
+    # Variables exemples
     d1 = {'Date' : '08/11/2022', 'Heure' : '10:50', 'Reference' : '001_22', 'Code' : '001'}
     d2 = {'Date' : '08/11/2022', 'Heure' : '10:50', 'Reference' : '002'}
     d3 = {'Date' : '08/11/2022', 'Heure' : '10:50'}
     
+    # Vérification de la robustesse de la fonction de lecture CSV
     assert meta.picture_metadata("Footage/1.csv") == d1
     assert meta.picture_metadata("Footage/2.csv") == d2
     assert meta.picture_metadata("Footage/3.csv") == d3
 
 def test_xmlwriter():
-    #Variables exemples
     
+    #Variables exemples
     d1_1 = {'Date' : '08/11/2022', 'Heure' : '10:50', 'Reference' : '001_22', 'Code' : '001'}
     d1_2 = {'hornetlength' : '11', 'abdomenshape' : 'Rond', 'cast' : 'Male', 'wingsspacing' : '12'}
     
     d2_1 = {'Date' : '08/11/2022', 'Heure' : '10:50', 'Reference' : '001_22'}
     d2_2 = {'hornetlength' : '11', 'abdomenshape' : 'Rond', 'cast' : 'Male'}
     
-    # Ecriture des fichiers XML
-    
+    # Ecriture des fichiers XML (Activation)
     xgen.xmlwriter(d1_2, d1_1, "Footage/1.png")
     xgen.xmlwriter(d2_2, d2_1, "Footage/2.png")
     
     # Lecture des fichiers XML
-    
     doc1 = minidom.parse("Results/1.xml")
     doc2 = minidom.parse("Results/2.xml")
     
@@ -58,15 +59,13 @@ def test_xmlwriter():
     dico2_2['wingsspacing'] = doc2.getElementsByTagName('wingsspacing')[0].firstChild.data
     
     # Vérification des fichiers XML
-    
     assert dico1_1 == d1_1
     assert dico1_2 == d1_2
     
     assert dico2_1 == {'Date' : '08/11/2022', 'Heure' : '10:50', 'Reference' : '001_22', 'Code' : 'UNDEFINED'}
     assert dico2_2 == {'hornetlength' : '11', 'abdomenshape' : 'Rond', 'cast' : 'Male', 'wingsspacing' : 'UNDEFINED'}
     
-    # Suppression des fichiers XML
-    
+    # Suppression des fichiers XML (Désactivation)
     os.remove("Results/1.xml")
     os.remove("Results/2.xml")
     os.rmdir("Results")

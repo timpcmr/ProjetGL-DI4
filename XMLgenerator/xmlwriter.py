@@ -16,28 +16,28 @@ def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str) ->
         int: Code de retour de la fonction
     """
     
-    # Generating the output name
+    # Génératon du nom du fichier XML de sortie
     
     outputname = Path(filename.removeprefix("Footage/")).stem + '.xml'
     
-    # XML Formatting, filling and saving
+    # Formatage, remplissage et écriture du fichier XML
     
     root = minidom.Document()
     
-    # Main label
+    # Label principal
     data = root.createElement('data')
     root.appendChild(data)
     
-    # Label for each picture
+    # Label pour chaque image
     picture = root.createElement('picture')
     picture.setAttribute('name', filename.removeprefix("Footage/"))
     data.appendChild(picture)
     
-    # Labels for the caracteristics
+    # Labels pour les caractéristiques
     caracteristics_label = root.createElement('caracteristics')
     picture.appendChild(caracteristics_label)
     
-    cast = root.createElement('cast') # If determined
+    cast = root.createElement('cast') # Si déterminé
     cast.appendChild(root.createTextNode(caracteristics.get('cast', 'UNDEFINED')))
     caracteristics_label.appendChild(cast)
     
@@ -50,12 +50,12 @@ def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str) ->
     abdomenshape.appendChild(root.createTextNode(caracteristics.get('abdomenshape', 'UNDEFINED')))
     caracteristics_label.appendChild(abdomenshape)
     
-    wingsspacing = root.createElement('wingsspacing') # If determined
+    wingsspacing = root.createElement('wingsspacing') # Si déterminé
     wingsspacing.setAttribute('unit', 'mm')
     wingsspacing.appendChild(root.createTextNode(caracteristics.get('wingsspacing', 'UNDEFINED')))
     caracteristics_label.appendChild(wingsspacing)
     
-    # Labels for the metadata contained in the picture
+    # Labels pour les métadonnées
     metadata = root.createElement('metadata')
     picture.appendChild(metadata)
     
@@ -76,8 +76,7 @@ def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str) ->
     metadata.appendChild(trapreference)
     
     
-    # create a new XML file with the results
-    
+    # Crée le fichier XML et l'enregistre (si le dossier n'existe pas, il est créé)
     if not os.path.exists('Results'):
         os.makedirs('Results')
     

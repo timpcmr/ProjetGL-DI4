@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
-# Returns the length of the hornet in terms of pixel count
+
+# Retourne la longueur du corps du frelon
 
 def result_plot(picture : np.ndarray, lower_line : int, upper_line : int, left_line : int, index_max : int, pixel_count : int, number_of_lines : int, number_of_columns : int, picturefile : str) -> tuple:
     
@@ -20,33 +21,33 @@ def result_plot(picture : np.ndarray, lower_line : int, upper_line : int, left_l
         int: Code de retour de la fonction
     """
     
-    # Drawing the lines on the image
+    # Dessin des lignes de recherche
     
     picture = cv2.cvtColor(picture, cv2.COLOR_GRAY2BGR)
     
-    # Lower line
+    # Ligne inférieure
     cv2.line(picture, (0, lower_line), (number_of_columns, lower_line), (0, 0, 255), 2)
     
-    # Upper line
+    # Ligne supérieure
     cv2.line(picture, (0, upper_line), (number_of_columns, upper_line), (0, 0, 255), 2)
     
-    # Left line
+    # Ligne gauche
     cv2.line(picture, (left_line, 0), (left_line, number_of_lines), (0, 0, 255), 2)
     
-    # Right line
+    # Ligne droite
     
     positionning = int(left_line + pixel_count)
     cv2.line(picture, (positionning, 0), (positionning, number_of_lines), (0, 0, 255), 2)
     
-    # Longest line
+    # Ligne de longueur maximale
     cv2.line(picture, (left_line, index_max + upper_line), (positionning, index_max + upper_line), (0, 255, 0), 2)
     
-    # Sting
+    # Extéminté de la ligne de longueur maximale
     cv2.circle(picture, (positionning, index_max + upper_line), 10, (255, 75, 0), -1)
     
     cv2.imshow("Hornet length", picture)
     
-    # Exporting the plot
+    # Ecriture de l'image avec les lignes de recherche dessinées pour démonstration
     outputfile = picturefile[:-4] + "_length.jpg"
     outputfile = outputfile.removeprefix('Footage/')
     outputfile = "Footage/LengthPlots/" + outputfile
@@ -69,9 +70,6 @@ def zero_pixels(line : np.ndarray) -> int:
     
     return line.shape[0] - np.count_nonzero(line)
 
-
-
-
 def bounding_lines(array_image : np.ndarray) -> tuple:
     
     """Détermine les lignes/colonnes délimitant de la zone d'analyse du frelon
@@ -83,13 +81,13 @@ def bounding_lines(array_image : np.ndarray) -> tuple:
         tuple: Indices des lignes/colonnes délimitant de la zone d'analyse du frelon
     """
     
-    # Getting the number of lines and columns of the image
+    # Récupération du nombre de lignes et de colonnes de la matrice de l'image binaire du frelon
     number_of_lines = array_image.shape[0]
     number_of_columns = array_image.shape[1]
     
     print("Number of lines:", number_of_lines)
     
-    # Finding the lower horizontal line to frame the hornet
+    # Recherche le la ligne inférieure de la zone d'analyse
     counter = number_of_lines
     pixel_count = 0
     
@@ -100,7 +98,7 @@ def bounding_lines(array_image : np.ndarray) -> tuple:
     
     lower_line = counter
     
-    # Finding the upper horizontal line to frame the hornet
+    # Recherche le la ligne supérieure de la zone d'analyse
     
     counter = 0
     pixel_count = 0
@@ -111,7 +109,7 @@ def bounding_lines(array_image : np.ndarray) -> tuple:
     
     upper_line = counter
     
-    # Finding the left vertical line to frame the hornet
+    # Recherche de la colonne gauche de la zone d'analyse
     
     counter = 0
     pixel_count = 0
@@ -140,26 +138,26 @@ def hornet_length(picture : np.ndarray, picturefile : str) -> tuple:
     Returns:
         tuple : Longueur du frelon en pixels, coordonnées de l'extrémité de l'abdomen
     """
-    # Generating a copy of the picture to draw on
+    # Génération d'une copie de la matrice de l'image binaire du frelon pour pouvoir la manipuler
     array_image = np.asarray(picture)
     
-    # Getting its dimensions
+    # Récupération des dimensions
     number_of_lines = array_image.shape[0]
     number_of_columns = array_image.shape[1]
     
-    # Getting the bounds of the area to analyze
+    # Recupération des lignes/colonnes délimitant de la zone d'analyse du frelon
     upper_line, lower_line, left_line = bounding_lines(array_image)
     
-    # Extracting the area of interest to save computing time
+    # Extraction de la zone d'analyse du frelon pour gagner en performance
     extracted_array = array_image[upper_line:lower_line, left_line:number_of_columns]
     
-    # Making a list of the number of black pixels per line
+    # Création et remplissage d'un tableau contenant le nombre de pixels noirs par ligne
     pixel_count_list = list()
     for line in extracted_array:
         pixel_count_list.append(zero_pixels(line))
 
-    # Gettint its maximum value and its index in the original array
-    
+    # Recupération de la ligne de longueur maximale et de son index dans la matrice originale
+    # Gestion d'exception dans le cas ou aucune ligne n'est détectée
     try:
         pixel_count = np.max(pixel_count_list)
     except ValueError:
@@ -173,7 +171,7 @@ def hornet_length(picture : np.ndarray, picturefile : str) -> tuple:
         index_max = pixel_count_list.index(pixel_count)
         sting_coordinates = int(left_line + pixel_count), index_max + upper_line
     
-    # Optionnal plot : See the results of the analysis in a graphical manner
+    # Chéma optionnel de démonstration
     #result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns, picturefile)
     
     print("Pixel count:", pixel_count)

@@ -13,10 +13,10 @@ def xmlgenerator(caracteristics : dict, filename : str) -> int:
         int: Code de retour de la fonction
     """
     
-    # Getting the picture metadata
+    # Récuperation des métadonnées de l'image
     metadata = picture_metadata(filename)
     
-    # Writing the XML file
+    # Ecriture du fichier XML
     xmlwriter(caracteristics, metadata, filename)
     
     return 0

@@ -14,16 +14,16 @@ def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
         dict: Caste du frelon
     """
     
-    # initialising the output variable
+    # Initialisation du dictionnaire de retour
     caracteristics = dict()
     
-    # Determining the hornet length
+    # Recherche de la longueur du frelon
     hornet_length_value, sting_coordinates = hornet_length(hornet_binary_mask, picturefile)
     scale = 100
     reel_length = np.divide(hornet_length_value, scale)
     caracteristics["hornetlength"] = reel_length
     
-    # determinining the abdomen shape
+    # Recherche de la forme de l'abdomen
     abdomen_shape_value = abdomen_shape(hornet_binary_mask, sting_coordinates)
     caracteristics["abdomenshape"] = abdomen_shape_value
     
