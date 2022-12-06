@@ -135,7 +135,7 @@ def hornet_length(picture : np.ndarray, picturefile : str) -> tuple:
     
     Args:
         picture (np.ndarray): Matrice de l'image binaire du frelon
-        picturefile (str): Chemin d'accès à l'image
+        picturefile (str): Chemin d'accès à l'image, permet la génération de schémas d'analyse
 
     Returns:
         tuple : Longueur du frelon en pixels, coordonnées de l'extrémité de l'abdomen

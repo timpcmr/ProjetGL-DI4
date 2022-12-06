@@ -1,6 +1,6 @@
 from .abdomen_shape import *
 from .hornet_length import *
-import cv2
+
 
 def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
     
