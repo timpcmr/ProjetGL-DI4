@@ -48,7 +48,7 @@ Ici on détermine la longeur de l'insecte pour savoir si c'est une fondatrice ou
 
 ### Critère de forme de l'abdomen
 
-On peu déterminer le sexe de l'insecte de par la forme de son abdomen. Si il est pointu, c'est une femelle, sinon, c'est un mâle.
+On peut déterminer le sexe de l'insecte de par la forme de son abdomen. Si il est pointu, c'est une femelle, sinon, c'est un mâle.
 Le sexe est déterminé par aggrégat de resultats de plusieur méthodes de recherches.
 
 - Régréssion Linéaire et Logarithmique des points de contour de l'abdomen
@@ -64,19 +64,20 @@ Les résultats obtenus sont renseignés dans un fichier XML comme suit :
     <picture name="15.jpg">
       <caracteristics>
         <cast>Fondatrice</cast>
-        <hornetlength unit="mm">24</hornetlength>
+        <hornetlength unit="mm">10</hornetlength>
         <abdomenshape>Pointu</abdomenshape>
         <wingsspacing unit="mm">UNDEFINED</wingsspacing>
       </caracteristics>
       <metadata>
-        <date>2022:11:02</date>
-        <time>14:21:45</time>
-        <trapreference>00001</trapreference>
+        <date>08/11/2022</date>
+        <time>10:50</time>
+        <trapreference>001_22</trapreference>
+        <trapcode>001</trapcode>
       </metadata>
     </picture>
   </data>
 ```
-Les métadonées sont récupérées à partir de la lecture du fichier .log attaché à chaque image.
+Les métadonées sont récupérées à partir de la lecture du fichier .csv attaché à chaque image.
 
 ## Génération de la documentation
 
@@ -98,9 +99,22 @@ Sous windows:
 docbuild.bat
 ```
 
-Les fichiers (dont index.html) se situeront dans Documentation/_build/html
+Les fichiers (dont index.html) se situeront dans *"Documentation/_build/html"*
+
+
+## Tests unitaires
+
+Nécessite le package *pytest* installable comme suit :
+
+```bash
+pip3 install pytest
+```
+Pour lancer l'éxecution des tests unitaires de ce projet, ouvrir un terminal dans le dossier *"Tests Unitaires"* et rentrer la commande :
+```bash
+pytest -vv
+```
 
 ## License
 
-Créé par Lucas SENLECQUE et Timothée AUFFRET, dans le cadre d'un projet d'études à Polytech Tours.
+Créé par Timothée AUFFRET et Lucas SENLECQUE, dans le cadre d'un projet d'études à Polytech Tours.
 2022-2023

@@ -93,7 +93,7 @@
 </section>
 <section id="critere-de-forme-de-l-abdomen">
 <h3>Critère de forme de l’abdomen<a class="headerlink" href="#critere-de-forme-de-l-abdomen" title="Permalink to this heading">¶</a></h3>
-<p>On peu déterminer le sexe de l’insecte de par la forme de son abdomen. Si il est pointu, c’est une femelle, sinon, c’est un mâle.
+<p>On peut déterminer le sexe de l’insecte de par la forme de son abdomen. Si il est pointu, c’est une femelle, sinon, c’est un mâle.
 Le sexe est déterminé par aggrégat de resultats de plusieur méthodes de recherches.</p>
 <ul class="simple">
 <li><p>Régréssion Linéaire et Logarithmique des points de contour de l’abdomen</p></li>
@@ -109,20 +109,21 @@ Le sexe est déterminé par aggrégat de resultats de plusieur méthodes de rech
     <span class="nt">&lt;picture</span> <span class="na">name=</span><span class="s">&quot;15.jpg&quot;</span><span class="nt">&gt;</span>
       <span class="nt">&lt;caracteristics&gt;</span>
         <span class="nt">&lt;cast&gt;</span>Fondatrice<span class="nt">&lt;/cast&gt;</span>
-        <span class="nt">&lt;hornetlength</span> <span class="na">unit=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>24<span class="nt">&lt;/hornetlength&gt;</span>
+        <span class="nt">&lt;hornetlength</span> <span class="na">unit=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>10<span class="nt">&lt;/hornetlength&gt;</span>
         <span class="nt">&lt;abdomenshape&gt;</span>Pointu<span class="nt">&lt;/abdomenshape&gt;</span>
         <span class="nt">&lt;wingsspacing</span> <span class="na">unit=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>UNDEFINED<span class="nt">&lt;/wingsspacing&gt;</span>
       <span class="nt">&lt;/caracteristics&gt;</span>
       <span class="nt">&lt;metadata&gt;</span>
-        <span class="nt">&lt;date&gt;</span>2022:11:02<span class="nt">&lt;/date&gt;</span>
-        <span class="nt">&lt;time&gt;</span>14:21:45<span class="nt">&lt;/time&gt;</span>
-        <span class="nt">&lt;trapreference&gt;</span>00001<span class="nt">&lt;/trapreference&gt;</span>
+        <span class="nt">&lt;date&gt;</span>08/11/2022<span class="nt">&lt;/date&gt;</span>
+        <span class="nt">&lt;time&gt;</span>10:50<span class="nt">&lt;/time&gt;</span>
+        <span class="nt">&lt;trapreference&gt;</span>001_22<span class="nt">&lt;/trapreference&gt;</span>
+        <span class="nt">&lt;trapcode&gt;</span>001<span class="nt">&lt;/trapcode&gt;</span>
       <span class="nt">&lt;/metadata&gt;</span>
     <span class="nt">&lt;/picture&gt;</span>
   <span class="nt">&lt;/data&gt;</span>
 </pre></div>
 </div>
-<p>Les métadonées sont récupérées à partir de la lecture du fichier .log attaché à chaque image.</p>
+<p>Les métadonées sont récupérées à partir de la lecture du fichier .csv attaché à chaque image.</p>
 </section>
 <section id="generation-de-la-documentation">
 <h2>Génération de la documentation<a class="headerlink" href="#generation-de-la-documentation" title="Permalink to this heading">¶</a></h2>
@@ -139,11 +140,22 @@ Le sexe est déterminé par aggrégat de resultats de plusieur méthodes de rech
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docbuild.bat
 </pre></div>
 </div>
-<p>Les fichiers (dont index.html) se situeront dans Documentation/_build/html</p>
+<p>Les fichiers (dont index.html) se situeront dans <em>“Documentation/_build/html”</em></p>
+</section>
+<section id="tests-unitaires">
+<h2>Tests unitaires<a class="headerlink" href="#tests-unitaires" title="Permalink to this heading">¶</a></h2>
+<p>Nécessite le package <em>pytest</em> installable comme suit :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install pytest
+</pre></div>
+</div>
+<p>Pour lancer l’éxecution des tests unitaires de ce projet, ouvrir un terminal dans le dossier <em>“Tests Unitaires”</em> et rentrer la commande :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest -vv
+</pre></div>
+</div>
 </section>
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Créé par Lucas SENLECQUE et Timothée AUFFRET, dans le cadre d’un projet d’études à Polytech Tours.
+<p>Créé par Timothée AUFFRET et Lucas SENLECQUE, dans le cadre d’un projet d’études à Polytech Tours.
 2022-2023</p>
 </section>
 </section>
