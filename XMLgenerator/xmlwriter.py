@@ -1,5 +1,6 @@
 from xml.dom import minidom
 from pathlib import Path
+import os
 
 def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str) -> int:
     
@@ -76,6 +77,10 @@ def xmlwriter(caracteristics : dict, picture_metadata : dict, filename : str) ->
     
     
     # create a new XML file with the results
+    
+    if not os.path.exists('Results'):
+        os.makedirs('Results')
+    
     root.writexml( open('Results/' + outputname, 'w'), indent="  ", addindent="  ", newl='\n')
     root.unlink()
     

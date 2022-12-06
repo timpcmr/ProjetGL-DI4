@@ -24,6 +24,7 @@ def picture_metadata(filename : str) -> dict:
         rows_list = list(csvreader)
         
         for i in range(len(rows_list[0])):
-            metadata[rows_list[0][i]] = rows_list[1][i]
+            if rows_list[0][i] != '' and rows_list[1][i] != '':
+                metadata[rows_list[0][i]] = rows_list[1][i]
     
     return metadata

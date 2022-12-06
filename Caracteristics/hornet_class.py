@@ -19,7 +19,9 @@ def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
     
     # Determining the hornet length
     hornet_length_value, sting_coordinates = hornet_length(hornet_binary_mask, picturefile)
-    caracteristics["hornetlength"] = hornet_length_value
+    scale = 100
+    reel_length = np.divide(hornet_length_value, scale)
+    caracteristics["hornetlength"] = reel_length
     
     # determinining the abdomen shape
     abdomen_shape_value = abdomen_shape(hornet_binary_mask, sting_coordinates)

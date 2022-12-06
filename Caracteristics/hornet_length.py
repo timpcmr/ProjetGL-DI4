@@ -140,10 +140,6 @@ def hornet_length(picture : np.ndarray, picturefile : str) -> tuple:
     Returns:
         tuple : Longueur du frelon en pixels, coordonnées de l'extrémité de l'abdomen
     """
-    
-    # Number of pixels per millimeter
-    scale = 100 
-    
     # Generating a copy of the picture to draw on
     array_image = np.asarray(picture)
     
@@ -163,18 +159,24 @@ def hornet_length(picture : np.ndarray, picturefile : str) -> tuple:
         pixel_count_list.append(zero_pixels(line))
 
     # Gettint its maximum value and its index in the original array
-    pixel_count = np.max(pixel_count_list)
-    index_max = pixel_count_list.index(pixel_count)
-    sting_coordinates = int(left_line + pixel_count), index_max + upper_line
+    
+    try:
+        pixel_count = np.max(pixel_count_list)
+    except ValueError:
+        print("No pixels found")
+        pixel_count = 0
+    
+    if pixel_count == 0:
+        index_max = 0
+        sting_coordinates = (0, 0)
+    else:
+        index_max = pixel_count_list.index(pixel_count)
+        sting_coordinates = int(left_line + pixel_count), index_max + upper_line
     
     # Optionnal plot : See the results of the analysis in a graphical manner
-    result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns, picturefile)
+    #result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns, picturefile)
     
     print("Pixel count:", pixel_count)
-    
-    # Conversion from pixels to millimeters
-    length_value = np.divide(pixel_count, scale)
-    
-    print("Length value:", length_value, "mm")
+    length_value = pixel_count
     
     return length_value, sting_coordinates
