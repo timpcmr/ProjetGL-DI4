@@ -99,7 +99,7 @@ Sous windows:
 docbuild.bat
 ```
 
-Les fichiers (dont index.html) se situeront dans *"Documentation/_build/html"*
+Les fichiers (dont index.html) se situeront dans *"Documentation/_build/"*
 
 
 ## Tests unitaires
@@ -110,9 +110,17 @@ Nécessite le package *pytest* installable comme suit :
 pip3 install pytest
 ```
 Pour lancer l'éxecution des tests unitaires de ce projet, ouvrir un terminal dans le dossier *"Tests Unitaires"* et rentrer la commande :
+
+Sous environnement Unix:
 ```bash
 pytest -vv
 ```
+
+Sous windows:
+```bash
+python3 -m pytest -vv
+```
+
 
 ## License
 

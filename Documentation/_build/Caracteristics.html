@@ -60,6 +60,63 @@
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="Caracteristics.abdomen_shape.find_angle">
+<span class="sig-prename descclassname"><span class="pre">Caracteristics.abdomen_shape.</span></span><span class="sig-name descname"><span class="pre">find_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeff1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeff2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#Caracteristics.abdomen_shape.find_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trouve l’angle entre deux droites.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coeff1</strong> (<em>list</em>) – Coefficients de la première droite</p></li>
+<li><p><strong>coeff2</strong> (<em>list</em>) – Coefficients de la deuxième droite</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Angle entre les deux droites</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Caracteristics.abdomen_shape.find_coeffs">
+<span class="sig-prename descclassname"><span class="pre">Caracteristics.abdomen_shape.</span></span><span class="sig-name descname"><span class="pre">find_coeffs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Caracteristics.abdomen_shape.find_coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trouve les coefficients de la fonction de la droite de l’abdomen du frelon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>list</em>) – Liste des abscisses des points de la droite</p></li>
+<li><p><strong>Y</strong> (<em>list</em>) – Liste des ordonnées des points de la droite</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Coefficients de la fonction</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Caracteristics.abdomen_shape.find_points">
+<span class="sig-prename descclassname"><span class="pre">Caracteristics.abdomen_shape.</span></span><span class="sig-name descname"><span class="pre">find_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">picturepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Caracteristics.abdomen_shape.find_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trouve la fonction de la droite de l’abdomen du frelon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>picturepath</strong> (<em>str</em>) – Chemin du contour de l’abdomen du frelon</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Liste des coefficients de la fonction</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-Caracteristics.hornet_class">
 <span id="caracteristics-hornet-class-module"></span><h2>Caracteristics.hornet_class module<a class="headerlink" href="#module-Caracteristics.hornet_class" title="Permalink to this heading">¶</a></h2>
@@ -111,7 +168,7 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>picture</strong> (<em>np.ndarray</em>) – Matrice de l’image binaire du frelon</p></li>
-<li><p><strong>picturefile</strong> (<em>str</em>) – Chemin d’accès à l’image</p></li>
+<li><p><strong>picturefile</strong> (<em>str</em>) – Chemin d’accès à l’image, permet la génération de schémas d’analyse</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

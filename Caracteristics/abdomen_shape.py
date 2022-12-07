@@ -15,45 +15,50 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     Returns:
         str: Résultat de la forme de l'abdomen
     """
-    
-    im_sting = picture_array[sting_coordinates[1] - 100:sting_coordinates[1],
-               sting_coordinates[0] - 100:sting_coordinates[0]]
 
+    #Taille de l'image
+    taille = picture_array.shape
+    longueur_tot = taille[0]
+    largeur_tot = taille[1]
+    print("taille :",longueur_tot,largeur_tot)
+
+    #Zoom sur la moitié haute de l'abdomen
+    im_sting = picture_array[sting_coordinates[1] - int(largeur_tot*0.1):sting_coordinates[1],
+               sting_coordinates[0] - int(longueur_tot*0.1):sting_coordinates[0]]
+
+    #Création des contours
     edged = cv2.Canny(im_sting, 30, 200)
     contours, hierarchy = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    whiteblankimage = 255 * np.ones(shape=[100, 150, 3], dtype=np.uint8)
 
+    #Création d'une image blanche
+    whiteblankimage = 255 * np.ones(shape=[int(longueur_tot*0.1), int(largeur_tot*0.1), 3], dtype=np.uint8)
+
+    #Dessin des contours sur l'image blanche
     cv2.drawContours(image=whiteblankimage, contours=contours, contourIdx=-1, color=(0, 0, 0), thickness=1,
                      lineType=cv2.LINE_AA)
 
+    cv2.imshow('Avant contours', im_sting)
     cv2.imwrite('Footage/Contour_dard_haut.jpg', whiteblankimage)
     cv2.imshow('Contour_Dard_haut', whiteblankimage)
     cv2.waitKey(0)
 
-    dard_up = Image.open('Footage/Contour_dard_haut.jpg')
-    largeur, hauteur = dard_up.size
-    X1 = []
-    Y1 = []
-    for x in range(largeur):
-        for y in range(hauteur):
-            if dard_up.getpixel((x, y)) == (0, 0, 0):
-                X1.append(x)
-                Y1.append(y)
-    fonction1 = np.polyfit(X1, Y1, 1)
-    poly1 = np.poly1d(fonction1)
+    #Calculs
+    X1,Y1= find_points('Footage/Contour_dard_haut.jpg')
+    m1 = find_coeffs(X1,Y1)
+    print("coeffs : ",m1)
 
-    print(X1,Y1)
-    print(poly1)
-    m1= poly1.coeffs
-    print(m1)
+    #Zoom sur la moitié basse de l'abdomen
+    im_sting = picture_array[sting_coordinates[1]:sting_coordinates[1]+int(largeur_tot*0.1),
+               sting_coordinates[0]-int(longueur_tot*0.1):sting_coordinates[0]]
 
-    im_sting = picture_array[sting_coordinates[1]:sting_coordinates[1]+100,
-               sting_coordinates[0]-100:sting_coordinates[0]]
-
+    #Création des contours
     edged = cv2.Canny(im_sting, 30, 200)
     contours, hierarchy = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    whiteblankimage = 255 * np.ones(shape=[100, 150, 3], dtype=np.uint8)
 
+    #Création d'une image blanche
+    whiteblankimage = 255 * np.ones(shape=[int(longueur_tot*0.1),int(largeur_tot*0.1), 3], dtype=np.uint8)
+
+    #Dessin des contours sur l'image blanche
     cv2.drawContours(image=whiteblankimage, contours=contours, contourIdx=-1, color=(0, 0, 0), thickness=1,
                      lineType=cv2.LINE_AA)
 
@@ -61,31 +66,70 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     cv2.imshow('Contour_Dard_bas', whiteblankimage)
     cv2.waitKey(0)
 
-    dard_down = Image.open('Footage/Contour_dard_bas.jpg')
-    largeur, hauteur = dard_down.size
-    X2 = []
-    Y2 = []
-    for x in range(largeur):
-        for y in range(hauteur):
-            if dard_down.getpixel((x, y)) == (0, 0, 0):
-                X2.append(x)
-                Y2.append(y)
-    fonction2 = np.polyfit(X2, Y2, 1)
-    poly2 = np.poly1d(fonction2)
-
-    print(X2, Y2)
-    print(poly2)
-    m2 = poly2.coeffs
+    #Calculs
+    X2,Y2= find_points('Footage/Contour_dard_bas.jpg')
+    m2 = find_coeffs(X2,Y2)
     print(m2)
 
-    tan = (m1[0] - m2[0])/(1 + m1[0]*m2[0])
-    arctan = np.arctan(tan)
-    degre = arctan * 180 / math.pi
-    print(degre)
+    #Calcul de l'angle
+    angle = find_angle(m1,m2)
 
-    if degre <= 90:
+    #Détermination de la forme de l'abdomen
+    if angle <= 90:
         print("pointu")
         return "pointu"
-    if degre > 90:
+    if angle > 90:
         print("rond")
         return "rond"
+
+
+def find_points(picturepath : str) -> list:
+    """Trouve la fonction de la droite de l'abdomen du frelon.
+
+    Args:
+        picturepath (str): Chemin du contour de l'abdomen du frelon
+
+    Returns:
+        list: Liste des coefficients de la fonction
+    """
+    im = Image.open(picturepath)
+    largeur, hauteur = im.size
+    X = []
+    Y = []
+    for x in range(largeur):
+        for y in range(hauteur):
+            if im.getpixel((x, y)) == (0, 0, 0):
+                X.append(x)
+                Y.append(y)
+    return X,Y
+
+
+def find_coeffs(X : list, Y : list) -> list:
+    """Trouve les coefficients de la fonction de la droite de l'abdomen du frelon.
+
+    Args:
+        X (list): Liste des abscisses des points de la droite
+        Y (list): Liste des ordonnées des points de la droite
+
+    Returns:
+        list: Coefficients de la fonction
+    """
+    fonction = np.polyfit(X, Y, 1)
+    poly = np.poly1d(fonction)
+    return poly.coeffs
+
+
+def find_angle(coeff1 : list, coeff2 : list) -> float:
+    """Trouve l'angle entre deux droites.
+
+    Args:
+        coeff1 (list): Coefficients de la première droite
+        coeff2 (list): Coefficients de la deuxième droite
+
+    Returns:
+        float: Angle entre les deux droites
+    """
+    tan = (coeff1[0] - coeff2[0])/(1 + coeff1[0]*coeff2[0])
+    arctan = np.arctan(tan)
+    degre = arctan * 180 / math.pi
+    return degre
