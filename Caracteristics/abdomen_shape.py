@@ -5,7 +5,7 @@ import math
 
 
 def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
-    
+
     """Détermine la forme de l'abdomen du frelon. Par extension, on peut déterminer le sexe de l'insecte.
     
     Args:
@@ -20,7 +20,7 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     taille = picture_array.shape
     longueur_tot = taille[0]
     largeur_tot = taille[1]
-    print("taille :",longueur_tot,largeur_tot)
+    print("taille de l'image :",longueur_tot,"x",largeur_tot)
 
     #Zoom sur la moitié haute de l'abdomen
     im_sting = picture_array[sting_coordinates[1] - int(largeur_tot*0.1):sting_coordinates[1],
@@ -37,15 +37,15 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     cv2.drawContours(image=whiteblankimage, contours=contours, contourIdx=-1, color=(0, 0, 0), thickness=1,
                      lineType=cv2.LINE_AA)
 
-    cv2.imshow('Avant contours', im_sting)
     cv2.imwrite('Footage/Contour_dard_haut.jpg', whiteblankimage)
-    cv2.imshow('Contour_Dard_haut', whiteblankimage)
-    cv2.waitKey(0)
 
     #Calculs
     X1,Y1= find_points('Footage/Contour_dard_haut.jpg')
+    if X1 == [] or Y1 == []:
+        return
+    if len(X1) == longueur_tot*largeur_tot or len(Y1) == longueur_tot*largeur_tot:
+        return
     m1 = find_coeffs(X1,Y1)
-    print("coeffs : ",m1)
 
     #Zoom sur la moitié basse de l'abdomen
     im_sting = picture_array[sting_coordinates[1]:sting_coordinates[1]+int(largeur_tot*0.1),
@@ -63,13 +63,15 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
                      lineType=cv2.LINE_AA)
 
     cv2.imwrite('Footage/Contour_dard_bas.jpg', whiteblankimage)
-    cv2.imshow('Contour_Dard_bas', whiteblankimage)
-    cv2.waitKey(0)
 
     #Calculs
     X2,Y2= find_points('Footage/Contour_dard_bas.jpg')
+    if X2 == [] or Y2 == []:
+        return
+    if len(X2) == longueur_tot*largeur_tot or len(Y2) == longueur_tot*largeur_tot:
+        return
+
     m2 = find_coeffs(X2,Y2)
-    print(m2)
 
     #Calcul de l'angle
     angle = find_angle(m1,m2)
