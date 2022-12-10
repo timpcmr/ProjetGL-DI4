@@ -78,11 +78,33 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
 
     #Détermination de la forme de l'abdomen
     if angle <= 90:
-        print("pointu")
-        return "pointu"
+        print("pointu d'après l'angle")
+        #return "pointu"
     if angle > 90:
-        print("rond")
-        return "rond"
+        print("rond d'après l'angle")
+        #return "rond"
+
+    #Méthode 2 : comparaison avec une fonction logarithmique et une fonction affine
+    #Affine
+    fonction_affine = np.polyfit(X1, Y1, 1)
+    print(X1, Y1)
+    moyenne_diff_affine = difference_moyenne_affine(X1, Y1, fonction_affine)
+    print("Moyenne_diff_affine :",moyenne_diff_affine)
+
+    #Logarithmique
+    fonction_log = np.polyfit(X1, np.log(Y1), 1)
+    moyenne_diff_log = difference_moyenne_log(X1, Y1, fonction_log)
+    print("Moyenne_diff_log :",moyenne_diff_log)
+
+    if moyenne_diff_affine < moyenne_diff_log:
+        print("pointu d'après la moyenne")
+        #return "pointu"
+    if moyenne_diff_affine > moyenne_diff_log:
+        print("rond d'après la moyenne")
+        #return "rond"
+
+
+
 
 
 def find_points(picturepath : str) -> list:
@@ -135,3 +157,48 @@ def find_angle(coeff1 : list, coeff2 : list) -> float:
     arctan = np.arctan(tan)
     degre = arctan * 180 / math.pi
     return degre
+
+def difference_moyenne_affine(X : list, Y : list, coeff : list) -> float:
+    """Trouve la différence moyenne entre les points trouvés et la fonction affine.
+
+    Args:
+        X (list): Liste des abscisses des points
+        Y (list): Liste des ordonnées des points
+        coeff (list): Coefficients de la fonction affine
+
+    Returns:
+        float: Différence moyenne entre les points et la fonction affine
+    """
+    Y_diff = []
+    diff = 0
+    for i in range(len(X)):
+        Y_i = coeff[0]*i + coeff[1]
+        Y_diff.append(Y_i)
+        diff = (Y_diff[i] + Y[i]) / 2
+    for i in range(len(Y_diff)):
+        diff_total = diff + Y_diff[i]
+    Moyenne_diff = diff_total / len(Y_diff)
+    return Moyenne_diff
+
+def difference_moyenne_log(X : list, Y : list, coeff : list) -> float:
+    """Trouve la différence moyenne entre les points trouvés et la fonction logarithmique.
+
+    Args:
+        X (list): Liste des abscisses des points
+        Y (list): Liste des ordonnées des points
+        coeff (list): Coefficients de la fonction logarithmique
+
+    Returns:
+        float: Différence moyenne entre les points et la fonction logarithmique
+    """
+    Y_diff = []
+    diff = 0
+    for i in range(len(X)):
+        Y_i = coeff[0]*np.log(i) + coeff[1]
+        Y_diff.append(Y_i)
+        print(Y_i)
+        diff = (Y_diff[i] + Y[i]) / 2
+    for i in range(len(Y_diff)):
+        diff_total = diff + Y_diff[i]
+    Moyenne_diff = diff_total / len(Y_diff)
+    return Moyenne_diff
