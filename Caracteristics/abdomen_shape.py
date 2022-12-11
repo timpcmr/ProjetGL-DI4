@@ -79,15 +79,14 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     #Détermination de la forme de l'abdomen
     if angle <= 90:
         print("pointu d'après l'angle")
-        #return "pointu"
+        resultat_angle = "pointu"
     if angle > 90:
         print("rond d'après l'angle")
-        #return "rond"
+        resultat_angle = "rond"
 
     #Méthode 2 : comparaison avec une fonction logarithmique et une fonction affine
     #Affine
     fonction_affine = np.polyfit(X1, Y1, 1)
-    print(X1, Y1)
     moyenne_diff_affine = difference_moyenne_affine(X1, Y1, fonction_affine)
     print("Moyenne_diff_affine :",moyenne_diff_affine)
 
@@ -96,12 +95,19 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     moyenne_diff_log = difference_moyenne_log(X1, Y1, fonction_log)
     print("Moyenne_diff_log :",moyenne_diff_log)
 
+    #Comparaison des résultats
     if moyenne_diff_affine < moyenne_diff_log:
         print("pointu d'après la moyenne")
-        #return "pointu"
+        resultat_comparaison = "pointu"
     if moyenne_diff_affine > moyenne_diff_log:
         print("rond d'après la moyenne")
-        #return "rond"
+        resultat_comparaison = "rond"
+
+    #Résultat final
+    if resultat_angle == resultat_comparaison:
+        return resultat_comparaison #On renvoie le résultat commun aux deux méthodes
+    if resultat_angle != resultat_comparaison:
+        return resultat_angle #On choisit de donner la forme de l'abdomen d'après l'angle car plus fiable
 
 
 

@@ -107,3 +107,13 @@ def test_abdomen_shape():
     # Suppression des fichiers temporaires
     os.remove("Footage/Contour_dard_haut.jpg")
     os.remove("Footage/Contour_dard_bas.jpg")
+
+def test_difference_moyenne_affine():
+        assert hc.difference_moyenne_affine([1,2,3],[1,2,3], (1, 0)) == 1.5
+        assert hc.difference_moyenne_affine([5,9,12],[45,50,53], (2, 0)) == 10.833333333333334
+        assert hc.difference_moyenne_affine([12,15,20],[34,1,23], (3, 0)) == 6.833333333333333
+
+def test_difference_moyenne_log():
+        assert hc.difference_moyenne_log([1,2,3],[1,2,3], (1, 0)) == 0.8465735902799727
+        assert hc.difference_moyenne_log([5,9,12],[45,50,53], (2, 0)) == 9.526480513893278
+        assert hc.difference_moyenne_log([12,15,20],[34,1,23], (3, 0)) == 4.873054104173251
