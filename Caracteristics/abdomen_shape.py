@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import math
+import warnings
 
 
 def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
@@ -20,18 +21,17 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     taille = picture_array.shape
     longueur_tot = taille[0]
     largeur_tot = taille[1]
-    print("taille de l'image :",longueur_tot,"x",largeur_tot)
 
     #Zoom sur la moitié haute de l'abdomen
-    im_sting = picture_array[sting_coordinates[1] - int(largeur_tot*0.1):sting_coordinates[1],
-               sting_coordinates[0] - int(longueur_tot*0.1):sting_coordinates[0]]
+    im_sting = picture_array[sting_coordinates[1] - int(largeur_tot*0.05):sting_coordinates[1],
+               sting_coordinates[0] - int(longueur_tot*0.05):sting_coordinates[0]]
 
     #Création des contours
     edged = cv2.Canny(im_sting, 30, 200)
     contours, hierarchy = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
     #Création d'une image blanche
-    whiteblankimage = 255 * np.ones(shape=[int(longueur_tot*0.1), int(largeur_tot*0.1), 3], dtype=np.uint8)
+    whiteblankimage = 255 * np.ones(shape=[int(longueur_tot*0.05), int(largeur_tot*0.05), 3], dtype=np.uint8)
 
     #Dessin des contours sur l'image blanche
     cv2.drawContours(image=whiteblankimage, contours=contours, contourIdx=-1, color=(0, 0, 0), thickness=1,
@@ -46,17 +46,19 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     if len(X1) == longueur_tot*largeur_tot or len(Y1) == longueur_tot*largeur_tot:
         return
     m1 = find_coeffs(X1,Y1)
+    print("points 1 :",X1,Y1)
+    print("coeffs 1",m1)
 
     #Zoom sur la moitié basse de l'abdomen
-    im_sting = picture_array[sting_coordinates[1]:sting_coordinates[1]+int(largeur_tot*0.1),
-               sting_coordinates[0]-int(longueur_tot*0.1):sting_coordinates[0]]
+    im_sting = picture_array[sting_coordinates[1]:sting_coordinates[1]+int(largeur_tot*0.05),
+               sting_coordinates[0]-int(longueur_tot*0.05):sting_coordinates[0]]
 
     #Création des contours
     edged = cv2.Canny(im_sting, 30, 200)
     contours, hierarchy = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
     #Création d'une image blanche
-    whiteblankimage = 255 * np.ones(shape=[int(longueur_tot*0.1),int(largeur_tot*0.1), 3], dtype=np.uint8)
+    whiteblankimage = 255 * np.ones(shape=[int(longueur_tot*0.05),int(largeur_tot*0.05), 3], dtype=np.uint8)
 
     #Dessin des contours sur l'image blanche
     cv2.drawContours(image=whiteblankimage, contours=contours, contourIdx=-1, color=(0, 0, 0), thickness=1,
@@ -88,12 +90,10 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     #Affine
     fonction_affine = np.polyfit(X1, Y1, 1)
     moyenne_diff_affine = difference_moyenne_affine(X1, Y1, fonction_affine)
-    print("Moyenne_diff_affine :",moyenne_diff_affine)
 
     #Logarithmique
     fonction_log = np.polyfit(X1, np.log(Y1), 1)
     moyenne_diff_log = difference_moyenne_log(X1, Y1, fonction_log)
-    print("Moyenne_diff_log :",moyenne_diff_log)
 
     #Comparaison des résultats
     if moyenne_diff_affine < moyenne_diff_log:
@@ -200,9 +200,11 @@ def difference_moyenne_log(X : list, Y : list, coeff : list) -> float:
     Y_diff = []
     diff = 0
     for i in range(len(X)):
-        Y_i = coeff[0]*np.log(i) + coeff[1]
+        if i == 0:
+            Y_i = Y[0]
+        else:
+            Y_i = coeff[0]*np.log(i) + coeff[1]
         Y_diff.append(Y_i)
-        print(Y_i)
         diff = (Y_diff[i] + Y[i]) / 2
     for i in range(len(Y_diff)):
         diff_total = diff + Y_diff[i]

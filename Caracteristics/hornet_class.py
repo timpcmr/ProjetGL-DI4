@@ -35,8 +35,6 @@ def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
         caste = "Ouvriere"
     elif abdomen_shape_value == "rond":
         caste = "Male"
-    print("caste :",caste)
     if caste != "":
         caracteristics['cast'] = caste
-    print(caracteristics)
     return caracteristics

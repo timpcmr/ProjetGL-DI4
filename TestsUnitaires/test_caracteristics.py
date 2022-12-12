@@ -98,11 +98,18 @@ def test_abdomen_shape():
     im1 = cv2.imread("Footage/15_cutout.jpg", cv2.IMREAD_GRAYSCALE)
     im2 = cv2.imread("Footage/white.png", cv2.IMREAD_GRAYSCALE)
     im3 = cv2.imread("Footage/black.png", cv2.IMREAD_GRAYSCALE)
+    im4 = cv2.imread("Footage/Round.png", cv2.IMREAD_GRAYSCALE)
+    im5 = cv2.imread("Footage/Triangle.png", cv2.IMREAD_GRAYSCALE)
+
 
     # Tests
     assert hc.abdomen_shape(im1,(876, 535)) == "pointu"
     assert hc.abdomen_shape(im2,(971, 533)) == None # Pas de forme (tout blanc)
     assert hc.abdomen_shape(im3,(500, 500)) == None # Pas de forme (tout noir)
+    #assert hc.abdomen_shape(im4,(1000, 479)) == "rond"
+    assert hc.abdomen_shape(im5,(1000, 457)) == "pointu"
+
+
 
     # Suppression des fichiers temporaires
     os.remove("Footage/Contour_dard_haut.jpg")
