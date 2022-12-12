@@ -2,6 +2,7 @@ from .abdomen_shape import *
 from .hornet_length import *
 from xml.dom import minidom
 from datetime import datetime
+import os
 
 def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
     
@@ -39,8 +40,27 @@ def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
     
     #Détermination de la caste
     caste = ""
-    if actual_month < seuil or flag == 1:
+    if actual_month <= seuil and flag == 0:
         caracteristics['cast'] = "Fondatrice"
+        year = datetime.now().year
+        path = "Results\length" + str(year) + ".xml"
+        if not os.path.exists(path):
+            root = minidom.Document()
+            data = root.createElement('data')
+            root.appendChild(data)
+            root.writexml(open('Results\length'+str(year)+".xml", 'w'), indent="  ", addindent="  ", newl='\n')
+            root.unlink()
+        root = minidom.parse(path)
+        data = root.getElementsByTagName('data')[0]
+        picture = root.createElement('picture')
+        picture.setAttribute('name', picturefile)
+        data.appendChild(picture)
+        length = root.createElement('length')
+        length.setAttribute('unit', 'mm')
+        length.appendChild(root.createTextNode(str(reel_length)))
+        picture.appendChild(length)
+        root.writexml(open('Results\length'+str(year)+".xml", 'w'), indent="  ", addindent="  ", newl='\n')
+        root.unlink()
     else:
         if abdomen_shape_value == "pointu" and reel_length > 10:
             caste = "Fondatrice"
