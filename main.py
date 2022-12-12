@@ -40,9 +40,9 @@ def main() -> int:
     
     ############ Generating the XML file ############
     
-    test = {"cast" : "Fondatrice", "hornetlength" : "10", "abdomenshape" : "Pointu"}
+    #test = {"cast" : "Fondatrice", "hornetlength" : "10", "abdomenshape" : "Pointu"}
     
-    xmlgenerator(test, picturefile)
+    xmlgenerator(hclass, picturefile)
     
     
     time_end = time.process_time()

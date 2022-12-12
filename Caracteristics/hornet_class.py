@@ -21,12 +21,22 @@ def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
     hornet_length_value, sting_coordinates = hornet_length(hornet_binary_mask, picturefile)
     scale = 100
     reel_length = np.divide(hornet_length_value, scale)
-    caracteristics["hornetlength"] = reel_length
+    caracteristics['hornetlength'] = str(reel_length)
     
     # Recherche de la forme de l'abdomen
     abdomen_shape_value = abdomen_shape(hornet_binary_mask, sting_coordinates)
-    caracteristics["abdomenshape"] = abdomen_shape_value
+    caracteristics['abdomenshape'] = abdomen_shape_value
     
-    
-    
+    #Détermination de la caste
+    caste = ""
+    if abdomen_shape_value == "pointu" and reel_length > 10:
+        caste = "Fondatrice"
+    elif abdomen_shape_value == "pointu" and reel_length <= 10:
+        caste = "Ouvriere"
+    elif abdomen_shape_value == "rond":
+        caste = "Male"
+    print("caste :",caste)
+    if caste != "":
+        caracteristics['cast'] = caste
+    print(caracteristics)
     return caracteristics
