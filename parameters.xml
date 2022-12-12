@@ -2,7 +2,7 @@
   <data>
     <parameters>
       <param>
-        <seuil>13</seuil>
+        <seuil>3</seuil>
 		<echelle>100</echelle>
 		<forcer_debut_saison>0</forcer_debut_saison>
       </param>
