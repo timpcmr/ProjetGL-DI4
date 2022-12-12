@@ -76,6 +76,7 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     #Calcul de l'angle
     angle = find_angle(m1,m2)
     #Détermination de la forme de l'abdomen
+    if angle <= 60:
         print("pointu d'après l'angle")
         resultat_angle = "pointu"
     if angle > 60:
