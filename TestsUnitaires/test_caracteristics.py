@@ -106,7 +106,7 @@ def test_abdomen_shape():
     assert hc.abdomen_shape(im1,(876, 535)) == "pointu"
     assert hc.abdomen_shape(im2,(971, 533)) == None # Pas de forme (tout blanc)
     assert hc.abdomen_shape(im3,(500, 500)) == None # Pas de forme (tout noir)
-    #assert hc.abdomen_shape(im4,(1000, 479)) == "rond"
+    assert hc.abdomen_shape(im4,(994, 482)) == "rond"
     assert hc.abdomen_shape(im5,(1000, 457)) == "pointu"
 
 

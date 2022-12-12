@@ -46,8 +46,6 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
     if len(X1) == longueur_tot*largeur_tot or len(Y1) == longueur_tot*largeur_tot:
         return
     m1 = find_coeffs(X1,Y1)
-    print("points 1 :",X1,Y1)
-    print("coeffs 1",m1)
 
     #Zoom sur la moitié basse de l'abdomen
     im_sting = picture_array[sting_coordinates[1]:sting_coordinates[1]+int(largeur_tot*0.05),
@@ -77,12 +75,10 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
 
     #Calcul de l'angle
     angle = find_angle(m1,m2)
-
     #Détermination de la forme de l'abdomen
-    if angle <= 90:
         print("pointu d'après l'angle")
         resultat_angle = "pointu"
-    if angle > 90:
+    if angle > 60:
         print("rond d'après l'angle")
         resultat_angle = "rond"
 
