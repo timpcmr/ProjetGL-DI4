@@ -22,7 +22,7 @@ def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
     seuil = int(parameters.getElementsByTagName('seuil')[0].firstChild.data)
     actual_month = int(datetime.now().month)
     scale = int(parameters.getElementsByTagName('echelle')[0].firstChild.data)
-    flag = parameters.getElementsByTagName('forcer_debut_saison')[0].firstChild.data
+    flag = int(parameters.getElementsByTagName('forcer_debut_saison')[0].firstChild.data)
     print("mois actuel :", actual_month, "| seuil :", seuil, "| échelle :", scale, "| forcer début saison :", flag)
 
     # Initialisation du dictionnaire de retour
@@ -39,7 +39,7 @@ def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
     
     #Détermination de la caste
     caste = ""
-    if actual_month < seuil or flag == "True":
+    if actual_month < seuil or flag == 1:
         caracteristics['cast'] = "Fondatrice"
     else:
         if abdomen_shape_value == "pointu" and reel_length > 10:
