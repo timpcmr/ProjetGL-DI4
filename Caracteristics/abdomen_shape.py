@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import math
-import warnings
+import os
 
 
 def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
@@ -72,6 +72,9 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
         return
 
     m2 = find_coeffs(X2,Y2)
+    
+    os.remove('Footage/Contour_dard_haut.jpg')
+    os.remove('Footage/Contour_dard_bas.jpg')
 
     #Calcul de l'angle
     angle = find_angle(m1,m2)

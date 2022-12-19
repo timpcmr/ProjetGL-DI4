@@ -1,10 +1,11 @@
-ProjetGL-DI4
-============
+Modules \:
+=========
 
 .. toctree::
    :maxdepth: 4
 
    Caracteristics
    Cut_Out
+   TestsUnitaires
    XMLgenerator
    main

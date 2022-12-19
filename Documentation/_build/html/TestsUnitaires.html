@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>TestsUnitaires package</title>
+    
+          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="_static/theme-vendors.js"></script> -->
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">Projet Analyse d&#39;Images de Frelons</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>TestsUnitaires package</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="testsunitaires-package">
+<h1>TestsUnitaires package<a class="headerlink" href="#testsunitaires-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-TestsUnitaires.test_caracteristics">
+<span id="testsunitaires-test-caracteristics-module"></span><h2>TestsUnitaires.test_caracteristics module<a class="headerlink" href="#module-TestsUnitaires.test_caracteristics" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_caracteristics.test_abdomen_shape">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_caracteristics.</span></span><span class="sig-name descname"><span class="pre">test_abdomen_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_caracteristics.test_abdomen_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test macro de la fonction de recherche de la forme de l’abdomen.
+Vérifie que les fonctions fonctionnent ensemble et mènent bien à la bonne forme.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_caracteristics.test_bounding_lines">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_caracteristics.</span></span><span class="sig-name descname"><span class="pre">test_bounding_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_caracteristics.test_bounding_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste le bon positionnement des lignes de délimitation de la zone d’intérêt.
+L’idée ici est de vérifier avec des exemples simples que la fonction renvoie bien les bonnes valeurs.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_caracteristics.test_difference_moyenne_affine">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_caracteristics.</span></span><span class="sig-name descname"><span class="pre">test_difference_moyenne_affine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_caracteristics.test_difference_moyenne_affine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la fonction servant à calculer la précision de la régression affine.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_caracteristics.test_difference_moyenne_log">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_caracteristics.</span></span><span class="sig-name descname"><span class="pre">test_difference_moyenne_log</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_caracteristics.test_difference_moyenne_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la fonction servant à calculer la précision de la régression logarithmique.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_caracteristics.test_find_angle">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_caracteristics.</span></span><span class="sig-name descname"><span class="pre">test_find_angle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_caracteristics.test_find_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la recherche de l’angle à l’intersection de 2 droites.
+Des droites de référence (avec des coefficients connus ou aux valeurs rencontrées lors d’experimentations) sont utilisées pour vérifier que la fonction renvoie bien les bonnes valeurs.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_caracteristics.test_find_coeffs">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_caracteristics.</span></span><span class="sig-name descname"><span class="pre">test_find_coeffs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_caracteristics.test_find_coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la fonction de recherche des coefficients de la droite de l’abdomen.
+Avec des images de référence, on vérifie que la fonction renvoie bien les bonnes valeurs de coefficients.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_caracteristics.test_find_points">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_caracteristics.</span></span><span class="sig-name descname"><span class="pre">test_find_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_caracteristics.test_find_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la fonction de recherche des points de contours de l’abdomen.
+On cherche à vérifier que la fonction renvoie bien les bonnes séries de valeurs pour des images de référence.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_caracteristics.test_hornet_length">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_caracteristics.</span></span><span class="sig-name descname"><span class="pre">test_hornet_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_caracteristics.test_hornet_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste le calcul de la longueur du frelon.
+La fonction s’appuie sur zero_pixels et bounding_lines pour calculer la longueur du frelon. On vérifie que l’association de ces fonctions est bien réalisée et que la longueur est bien calculée.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_caracteristics.test_zero_pixels">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_caracteristics.</span></span><span class="sig-name descname"><span class="pre">test_zero_pixels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_caracteristics.test_zero_pixels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la fonction zero_pixels qui compte le nombre de pixels noirs dans une ligne de pixels.
+L’idée est ici de vérifier que la fonction compte bein tous les pixels noirs sans s’arrêter au premier pixel blanc rencontré.</p>
+</dd></dl>
+
+</section>
+<section id="module-TestsUnitaires.test_cutout">
+<span id="testsunitaires-test-cutout-module"></span><h2>TestsUnitaires.test_cutout module<a class="headerlink" href="#module-TestsUnitaires.test_cutout" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_cutout.test_cutout">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_cutout.</span></span><span class="sig-name descname"><span class="pre">test_cutout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_cutout.test_cutout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la génération du masque binaire du frelon.
+L’idée est, avec des images de référence, de vérifier que le masque binaire généré est bien celui attendu.</p>
+</dd></dl>
+
+</section>
+<section id="module-TestsUnitaires.test_xml">
+<span id="testsunitaires-test-xml-module"></span><h2>TestsUnitaires.test_xml module<a class="headerlink" href="#module-TestsUnitaires.test_xml" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_xml.test_picture_metadata">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_xml.</span></span><span class="sig-name descname"><span class="pre">test_picture_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_xml.test_picture_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la bonne lecture du fichier CSV donné en entrée
+On teste ici la robestesse de la fonction de lecture de CSV en alterrant les données présentes dans le fichier.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="TestsUnitaires.test_xml.test_xmlwriter">
+<span class="sig-prename descclassname"><span class="pre">TestsUnitaires.test_xml.</span></span><span class="sig-name descname"><span class="pre">test_xmlwriter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestsUnitaires.test_xml.test_xmlwriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la bonne écriture des résultats dans le fichier XML
+On teste ici la robustesse de la fonction d’écriture de XML en alterrant les données présentes dans le fichier.
+Pour vérifier la bonne écriture, on lit ensuite le fichier XML généré et on compare les données lues avec celles attendues.</p>
+</dd></dl>
+
+</section>
+<section id="module-TestsUnitaires">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TestsUnitaires" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2022, T. AUFFRET &amp; L. SENLECQUE.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

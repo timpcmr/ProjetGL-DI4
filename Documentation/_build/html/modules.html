@@ -1,46 +1,170 @@
-
 <!DOCTYPE html>
-
-<html lang="en">
+<html  lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>ProjetGL-DI4 &#8212; Projet Analyse d&#39;Images de Frelons 1.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+      <title>Modules :</title>
+    
+          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
 
-  </head><body>
-  
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="_static/theme-vendors.js"></script> -->
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Caracteristics package" href="Caracteristics.html" />
+  <link rel="prev" title="Bienvenue sur la documentation du projet !" href="index.html" /> 
+  </head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">Projet Analyse d&#39;Images de Frelons</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
           
-
-          <div class="body" role="main">
+          <navlinks>
             
-  <section id="projetgl-di4">
-<h1>ProjetGL-DI4<a class="headerlink" href="#projetgl-di4" title="Permalink to this heading">¶</a></h1>
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="#modules">modules :</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Caracteristics.html" class="reference internal ">Caracteristics package</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Cut_Out.html" class="reference internal ">Cut_Out package</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="TestsUnitaires.html" class="reference internal ">TestsUnitaires package</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="XMLgenerator.html" class="reference internal ">XMLgenerator package</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="main.html" class="reference internal ">main module</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>Modules :</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="index.html"
+       title="previous chapter">← Bienvenue sur la documentation du projet !</a>
+  </li>
+  <li class="next">
+    <a href="Caracteristics.html"
+       title="next chapter">Caracteristics package →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="modules">
+<h1>Modules :<a class="headerlink" href="#modules" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="Caracteristics.html">Caracteristics package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Caracteristics.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Caracteristics.html#module-Caracteristics.abdomen_shape">Caracteristics.abdomen_shape module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Caracteristics.html#Caracteristics.abdomen_shape.abdomen_shape"><code class="docutils literal notranslate"><span class="pre">abdomen_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Caracteristics.html#Caracteristics.abdomen_shape.difference_moyenne_affine"><code class="docutils literal notranslate"><span class="pre">difference_moyenne_affine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Caracteristics.html#Caracteristics.abdomen_shape.difference_moyenne_log"><code class="docutils literal notranslate"><span class="pre">difference_moyenne_log()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Caracteristics.html#Caracteristics.abdomen_shape.find_angle"><code class="docutils literal notranslate"><span class="pre">find_angle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Caracteristics.html#Caracteristics.abdomen_shape.find_coeffs"><code class="docutils literal notranslate"><span class="pre">find_coeffs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Caracteristics.html#Caracteristics.abdomen_shape.find_points"><code class="docutils literal notranslate"><span class="pre">find_points()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Caracteristics.html#module-Caracteristics.hornet_class">Caracteristics.hornet_class module</a><ul>
@@ -64,6 +188,32 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Cut_Out.html#module-Cut_Out">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TestsUnitaires.html">TestsUnitaires package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TestsUnitaires.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TestsUnitaires.html#module-TestsUnitaires.test_caracteristics">TestsUnitaires.test_caracteristics module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_caracteristics.test_abdomen_shape"><code class="docutils literal notranslate"><span class="pre">test_abdomen_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_caracteristics.test_bounding_lines"><code class="docutils literal notranslate"><span class="pre">test_bounding_lines()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_caracteristics.test_difference_moyenne_affine"><code class="docutils literal notranslate"><span class="pre">test_difference_moyenne_affine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_caracteristics.test_difference_moyenne_log"><code class="docutils literal notranslate"><span class="pre">test_difference_moyenne_log()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_caracteristics.test_find_angle"><code class="docutils literal notranslate"><span class="pre">test_find_angle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_caracteristics.test_find_coeffs"><code class="docutils literal notranslate"><span class="pre">test_find_coeffs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_caracteristics.test_find_points"><code class="docutils literal notranslate"><span class="pre">test_find_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_caracteristics.test_hornet_length"><code class="docutils literal notranslate"><span class="pre">test_hornet_length()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_caracteristics.test_zero_pixels"><code class="docutils literal notranslate"><span class="pre">test_zero_pixels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TestsUnitaires.html#module-TestsUnitaires.test_cutout">TestsUnitaires.test_cutout module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_cutout.test_cutout"><code class="docutils literal notranslate"><span class="pre">test_cutout()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TestsUnitaires.html#module-TestsUnitaires.test_xml">TestsUnitaires.test_xml module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_xml.test_picture_metadata"><code class="docutils literal notranslate"><span class="pre">test_picture_metadata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="TestsUnitaires.html#TestsUnitaires.test_xml.test_xmlwriter"><code class="docutils literal notranslate"><span class="pre">test_xmlwriter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TestsUnitaires.html#module-TestsUnitaires">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="XMLgenerator.html">XMLgenerator package</a><ul>
@@ -93,65 +243,26 @@
 
 
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Projet Analyse d'Images de Frelons</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="index.html"
+       title="previous chapter">← Bienvenue sur la documentation du projet !</a>
+  </li>
+  <li class="next">
+    <a href="Caracteristics.html"
+       title="next chapter">Caracteristics package →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2022, T. AUFFRET &amp; L. SENLECQUE.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2022, T. AUFFRET & L. SENLECQUE.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/modules.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
+            </div>
+          </div>
+      </page>
+    </div></div>
     
-
     
   </body>
 </html>

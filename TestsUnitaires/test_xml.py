@@ -4,6 +4,9 @@ import os
 from xml.dom import minidom
 
 def test_picture_metadata():
+    """Teste la bonne lecture du fichier CSV donné en entrée
+    On teste ici la robestesse de la fonction de lecture de CSV en alterrant les données présentes dans le fichier.
+    """
     
     # Variables exemples
     d1 = {'Date' : '08/11/2022', 'Heure' : '10:50', 'Reference' : '001_22', 'Code' : '001'}
@@ -11,11 +14,15 @@ def test_picture_metadata():
     d3 = {'Date' : '08/11/2022', 'Heure' : '10:50'}
     
     # Vérification de la robustesse de la fonction de lecture CSV
-    assert meta.picture_metadata("Footage/1.csv") == d1
-    assert meta.picture_metadata("Footage/2.csv") == d2
-    assert meta.picture_metadata("Footage/3.csv") == d3
+    assert meta.picture_metadata("Footage/1.csv") == d1 # Fichier complet (Format optimal)
+    assert meta.picture_metadata("Footage/2.csv") == d2 # Fichier incomplet (Colonne manquante)
+    assert meta.picture_metadata("Footage/3.csv") == d3 # Fichier incomplet (Colonne indiquée mais vide)
 
 def test_xmlwriter():
+    """Teste la bonne écriture des résultats dans le fichier XML
+    On teste ici la robustesse de la fonction d'écriture de XML en alterrant les données présentes dans le fichier.
+    Pour vérifier la bonne écriture, on lit ensuite le fichier XML généré et on compare les données lues avec celles attendues.
+    """
     
     #Variables exemples
     d1_1 = {'Date' : '08/11/2022', 'Heure' : '10:50', 'Reference' : '001_22', 'Code' : '001'}
@@ -59,9 +66,12 @@ def test_xmlwriter():
     dico2_2['wingsspacing'] = doc2.getElementsByTagName('wingsspacing')[0].firstChild.data
     
     # Vérification des fichiers XML
+    
+    # Ici on s'attend à retrouver toutes les données écrites car tous les champs sont spécifiés
     assert dico1_1 == d1_1
     assert dico1_2 == d1_2
     
+    # Ici on s'attend à retrouver toutes les données écrites sauf les champs "Code" et "wingsspacing" qui doivent être remplacés par 'UNDEFINDED' car ils ne sont pas spécifiés.
     assert dico2_1 == {'Date' : '08/11/2022', 'Heure' : '10:50', 'Reference' : '001_22', 'Code' : 'UNDEFINED'}
     assert dico2_2 == {'hornetlength' : '11', 'abdomenshape' : 'Rond', 'cast' : 'Male', 'wingsspacing' : 'UNDEFINED'}
     
