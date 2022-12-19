@@ -21,6 +21,5 @@ Indices and tables
 
 Readme File :
 -------------
--------------
 
 .. mdinclude:: ../README.md
