@@ -40,7 +40,6 @@ def main() -> int:
     
     ############ Generating the XML file ############
     
-    #test = {"cast" : "Fondatrice", "hornetlength" : "10", "abdomenshape" : "Pointu"}
     
     xmlgenerator(hclass, picturefile)
     
