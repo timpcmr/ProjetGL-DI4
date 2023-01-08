@@ -56,10 +56,10 @@ def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
         length.setAttribute('unit', 'mm')
         length.appendChild(root.createTextNode(str(reel_length)))
         data.appendChild(length)
-        root.writexml(open('Results\length'+str(year)+".xml", 'w'), indent="  ", addindent="  ", newl='\n')
+        root.writexml(open('Results/length'+str(year)+".xml", 'w'), indent="  ", addindent="  ", newl='\n')
         root.unlink()
     else:
-        root = minidom.parse('Results\length'+str(datetime.now().year)+".xml")
+        root = minidom.parse('Results/length'+str(datetime.now().year)+".xml")
         longueur_min = 9999
         for i in range(root.getElementsByTagName('data')[0].getElementsByTagName('length').length):
             longueur = float(root.getElementsByTagName('data')[0].getElementsByTagName('length')[i].firstChild.data)
