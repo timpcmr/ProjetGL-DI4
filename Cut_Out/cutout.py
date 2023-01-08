@@ -17,7 +17,7 @@ def cutout(filename : str) -> np.ndarray:
     # Charge l'image
     img = cv2.imread(filename)
     
-    # Lévée d'exception si l'image n'a pas pu être lue
+    # Levée d'exception si l'image n'a pas pu être lue
     if img is None:
         raise FileNotFoundError
     

@@ -84,7 +84,7 @@ Les métadonées sont récupérées à partir de la lecture du fichier .csv atta
 Nécessite les packages *sphinx*, *m2r2* et *sphinx-press-theme* installables comme suit :
 
 ```bash
-pip3 install sphinx && pip3 install m2r2 && pip install sphinx-press-theme
+pip3 install sphinx && pip3 install m2r2 && pip3 install sphinx-press-theme
 ```
 
 Pour regénérer la documentation, exécutez :
