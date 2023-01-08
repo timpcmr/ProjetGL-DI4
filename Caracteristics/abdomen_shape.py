@@ -38,6 +38,11 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
                      lineType=cv2.LINE_AA)
 
     cv2.imwrite('Footage/Contour_dard_haut.jpg', whiteblankimage)
+    
+    # Affichage de l'image avec les contours dessinés
+    cv2.imshow("Contour Haut", whiteblankimage)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     #Calculs
     X1,Y1= find_points('Footage/Contour_dard_haut.jpg')
@@ -63,6 +68,11 @@ def abdomen_shape(picture_array : np.ndarray, sting_coordinates : tuple) -> str:
                      lineType=cv2.LINE_AA)
 
     cv2.imwrite('Footage/Contour_dard_bas.jpg', whiteblankimage)
+    
+    # Affichage de l'image avec les contours dessinés
+    cv2.imshow("Contour Bas", whiteblankimage)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     #Calculs
     X2,Y2= find_points('Footage/Contour_dard_bas.jpg')

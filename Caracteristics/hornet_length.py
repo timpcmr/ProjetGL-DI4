@@ -52,8 +52,9 @@ def result_plot(picture : np.ndarray, lower_line : int, upper_line : int, left_l
     outputfile = outputfile.removeprefix('Footage/')
     outputfile = "Footage/LengthPlots/" + outputfile
     print(outputfile)
-    cv2.imwrite(outputfile, picture)
     cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    
     return 0
 
 
@@ -173,5 +174,9 @@ def hornet_length(picture : np.ndarray, picturefile : str) -> tuple:
     
     print("Pixel count:", pixel_count)
     length_value = pixel_count
+    
+    # Génération d'un schéma d'analyse
+    
+    result_plot(picture, lower_line, upper_line, left_line, index_max, pixel_count, number_of_lines, number_of_columns, picturefile)
     
     return length_value, sting_coordinates

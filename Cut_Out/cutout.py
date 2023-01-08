@@ -43,4 +43,10 @@ def cutout(filename : str) -> np.ndarray:
     intermediate_smoothed_mask = cv2.morphologyEx(combined_mask, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))
     smoothed_mask = cv2.morphologyEx(intermediate_smoothed_mask, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (4, 4)))
     
+    # affichage du masque
+    
+    cv2.imshow("Mask", smoothed_mask)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    
     return smoothed_mask
