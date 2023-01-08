@@ -43,6 +43,4 @@ def cutout(filename : str) -> np.ndarray:
     intermediate_smoothed_mask = cv2.morphologyEx(combined_mask, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))
     smoothed_mask = cv2.morphologyEx(intermediate_smoothed_mask, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (4, 4)))
     
-    cv2.imwrite("Footage/17_cutout.jpg", smoothed_mask)
-    
     return smoothed_mask
