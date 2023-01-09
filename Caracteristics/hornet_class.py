@@ -43,12 +43,12 @@ def hornet_class(hornet_binary_mask : np.ndarray, picturefile : str) -> dict:
     if actual_month <= seuil and flag == 0:
         caracteristics['cast'] = "Fondatrice"
         year = datetime.now().year
-        path = "Results\length" + str(year) + ".xml"
+        path = "Results/length" + str(year) + ".xml"
         if not os.path.exists(path):
             root = minidom.Document()
             data = root.createElement('data')
             root.appendChild(data)
-            root.writexml(open('Results\length'+str(year)+".xml", 'w'), indent="  ", addindent="  ", newl='\n')
+            root.writexml(open('Results/length'+str(year)+".xml", 'w'), indent="  ", addindent="  ", newl='\n')
             root.unlink()
         root = minidom.parse(path)
         data = root.getElementsByTagName('data')[0]
